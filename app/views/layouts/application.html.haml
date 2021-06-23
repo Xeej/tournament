@@ -1,0 +1,71 @@
+!!!
+%html
+  %head
+    - if @section.present?
+      %title= "VS Open | #{@section.capitalize}"
+    - else
+      %title= "VS Open"
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
+    = favicon_link_tag 'logo.png'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+  %body
+    = render '/layouts/flashes'
+    = render '/partials/login'
+    %main
+      .header.navbar.navbar-expand-lg.navbar-sstm
+        = render '/layouts/navigation'
+      .banner
+        .banner__overlay
+        = image_tag 'banner.jpg', class: 'banner__image'
+      .container
+        .row
+          - if request.original_fullpath == '/calendar'
+            .col-12
+              .content
+                = yield
+          - else
+            .d-none.d-lg-block.col-lg-3
+              .sidebar
+                = render '/partials/players'
+            .col-12.col-lg-9
+              .content
+                = yield
+    .footer
+      .container
+        .row.footer-nav
+          .col-5
+            .row
+              -# .col
+              -#   %p.small
+              -#     = link_to t('feedback_and_questions'), :feedbacks
+              .col
+                %p.small
+                  = link_to t('navigation.footer.administrators_short'), :administrators
+              .col
+                %p.small
+                  = mail_to 'admin@swisssmash.ch', t('navigation.footer.contact'), subject: t('navigation.footer.mail_subject'), body: t('navigation.footer.mail_body')
+          .col-2
+            = button_tag '', title: 'Go to top', style: 'background-color: #222; border: none;', class: 'scroll-top' do
+              = image_tag('logo.png', class: 'swisssmash_logo', eight: '50px', width: '50px')
+          .col-5
+            .row
+              -# .col
+              -#   %p.small
+              -#     = link_to t('navigation.footer.imprint'), :imprint
+              -# .col
+              -#   %p.small
+              -#     = link_to t('navigation.footer.privacy_policy'), :privacy_policy
+              .col
+                %p#donate-btn
+                  = link_to("https://paypal.me/swisssmash", target: '_blank', class: "btn btn-sstm") do
+                    = t('please_donate')
+                    = image_tag('paypal_icon.png', class: 'paypal', height: '30px', width: '30px')
+
+:javascript
+  I18n.defaultLocale = "#{I18n.default_locale}";
+  I18n.locale = "#{I18n.locale}";

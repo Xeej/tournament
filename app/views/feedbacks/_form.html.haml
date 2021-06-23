@@ -1,0 +1,21 @@
+#feedback-form.sub-form
+  = form_for @feedback, role: 'form' do |f|
+
+    - if @feedback.errors.any?
+      #error_explanation
+        %h2= pluralize(@feedback.errors.count, "error") + ' ' + t('feedback.prohibited')
+        %ul
+          - @feedback.errors.full_messages.each do |message|
+            %li= message
+
+    .col-md-12
+      .field.form-group
+        = f.text_field :user_id, class: 'd-none form-control', value: current_user.id
+        = f.text_area :text, class: 'form-control', style: 'height: 120px'
+      - if current_user.super_admin? and !@feedback.new_record?
+        .field.form-group
+          = f.label :response, t('feedback.admin_response')
+          = f.text_area :response, class: 'form-control', style: 'height: 120px'
+          = f.text_field :response_username, value: current_user.username, hidden: true
+      .actions.form-group
+        = f.submit ((@feedback.new_record? ? t('create') : t('update')) + ' ' + t('feedback.feedback_or_question')), class:'btn btn-ghost'

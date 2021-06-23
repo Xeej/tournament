@@ -1,0 +1,9 @@
+%h1= t('feedback.new')
+
+.row.form
+  .col-md-8
+    = render 'form'
+
+  .col-md-4
+    %strong
+      %p= link_to t('back'), :back

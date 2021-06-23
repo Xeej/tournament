@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= t('hi') %> <%= @user.username %></h1>
+    <p><%= t('feedback.mailer.thanks') %></p>
+    <p>
+      <%= t('feedback.mailer.response', link: link_to(t('feedback.mailer.this_link'), @url)).html_safe %>.
+    </p>
+    <p>
+      <%= t('feedback.mailer.best_regards') %>
+      <br>
+      <%= @admin.username %>
+    </p>
+  </body>
+</html>

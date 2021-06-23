@@ -1,0 +1,63 @@
+.calendar
+  #fullcalendar{data: {events: @full_calendar_events}}
+
+  .calendar__footer
+    .row
+      .col
+        .calendar__footer__legend
+          = render 'color_legend'
+      .col
+        .calendar__footer__actions
+          .mb-3
+            %strong
+              = 'Link: '
+            = request.base_url + calendar_path + '.ics'
+          = link_to "iCal Export", calendar_path + '.ics', class:'btn btn-ghost'
+
+
+:coffeescript
+  document.addEventListener 'turbolinks:load', ->
+    calendar = $('#fullcalendar')
+    calendar.fullCalendar
+      header:
+        left: 'title'
+        center: ''
+        right: 'today month,agendaWeek,agendaDay prev,next'
+      allDayText: I18n.t('calendar.allDayText')
+      buttonText:
+        today: I18n.t('calendar.buttonText.today')
+        month: I18n.t('calendar.buttonText.month')
+        agendaWeek: I18n.t('calendar.buttonText.agendaWeek')
+        agendaDay: I18n.t('calendar.buttonText.agendaDay')
+      contentHeight: 600
+      monthNames: I18n.t('calendar.monthNames')
+      monthNamesShort: I18n.t('calendar.monthNamesShort')
+      dayNames: I18n.t('calendar.dayNames')
+      dayNamesShort: I18n.t('calendar.dayNamesShort')
+      views:
+        month:
+          titleFormat: 'MMMM YYYY'
+        agendaWeek:
+          titleFormat: 'DD. MMMM YYYY'
+          columnFormat: 'ddd, DD.MM.'
+        agendaDay:
+          titleFormat: 'DD. MMMM YYYY'
+      defaultView: 'month'
+      timeFormat: 'h(:mm)a'
+      events: calendar.data('events')
+      firstDay: 1
+      eventClick: (event) ->
+        if event.url and event.url[0] != '/'
+          window.open event.url, '_blank'
+          return false
+
+    eventCalendar = ->
+      $('#fullcalendar').fullCalendar {calendar}
+
+    clearCalendar = ->
+      $('#fullcalendar').fullCalendar 'delete'
+      $('#fullcalendar').html ''
+      return
+
+    $(document).on 'turbolinks:load', eventCalendar
+    $(document).on 'turbolinks:before-cache', clearCalendar
