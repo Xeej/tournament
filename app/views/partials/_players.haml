@@ -12,12 +12,12 @@
       - @topPlayers.each_with_index do |player, i|
         %tr{'data-id': player.id, 'data-component'=>'player'}
           %td
-            - if player.main_characters.any?
-              - player.main_characters[0...1].each do |char|
-                - if File.file?("#{Rails.root}/app/assets/images/characters/#{char}.png")
-                  = image_tag "characters/#{char}.png", height: '25px', width: '25px'
-            - else
-              .div{style: 'display: inline;'}
-                %span.material-icons{style: 'vertical-align: middle; height: 25px; width: 25px;'}= 'help'
-          %td= player.prefix.present? ? "#{player.prefix} | #{player.gamer_tag}" : player.gamer_tag
+            -# - if player
+            -#   -# TODO изображение
+            -#   - if File.file?("#{Rails.root}/app/assets/images/characters/diddy_kong.png")
+            -#     = image_tag "characters/diddy_kong.png", height: '25px', width: '25px'
+            -# - else
+            .div{style: 'display: inline;'}
+              %span.material-icons{style: 'vertical-align: middle; height: 25px; width: 25px;'}= 'help'
+          %td= [player.surname, player.name].join(' ')
           %td{style: 'text-align: center;'}= "#{player.win_loss_ratio}%"

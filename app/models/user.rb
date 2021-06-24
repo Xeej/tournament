@@ -14,7 +14,7 @@ class User < ApplicationRecord
       :case_sensitive => false
     }
 
-  validate :validate_username
+  validate :validate_username, on: :create
 
   MAX_USERS_PER_PAGE = 100
 
@@ -41,7 +41,6 @@ class User < ApplicationRecord
 
   def strip_whitespace
     self.username.try(:strip!)
-    self.email.try(:strip!)
   end
 
   def self.find_for_database_authentication(warden_conditions)
@@ -54,7 +53,7 @@ class User < ApplicationRecord
   end
 
   def validate_username
-    if User.where(email: username).exists?
+    if User.where(username: username).exists?
       errors.add(:username, :invalid)
     end
   end
