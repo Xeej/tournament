@@ -1,8 +1,8 @@
 class PlayersController < ApplicationController
   require 'will_paginate/array'
-
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
-  before_action { @section = 'players' }
+  before_action { @section = 'Игроки' }
 
   # GET /players
   # GET /players.json
@@ -91,36 +91,9 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     respond_to do |format|
-      old_gamer_tag = @player.gamer_tag
+      
       if @player.update(player_params)
-        # update main_characters
-        @player.main_characters.clear
-        main_characters = [
-          params[:main_char1].present? ? params[:main_char1][0] : nil,
-          params[:main_char2].present? ? params[:main_char2][0] : nil,
-          params[:main_char3].present? ? params[:main_char3][0] : nil
-        ].compact
-        main_characters.each do |char|
-          @player.main_characters << char
-        end
         @player.save
-        # update all tournament ranking_strings if the gamer_tag was changed and create an AlternativeGamerTag
-        if @player.gamer_tag != old_gamer_tag
-          Tournament.all.each do |t|
-            if t.ranking_string.to_s.include?(old_gamer_tag)
-              t.update(ranking_string: t.ranking_string.gsub(old_gamer_tag, @player.gamer_tag))
-            end
-          end
-          AlternativeGamerTag.create(player_id: @player.id, gamer_tag: old_gamer_tag)
-        end
-        # update alternative_gamer_tags if it was changed
-        alts = ""
-        @player.alternative_gamer_tags.each { |alt| alts += "#{alt.gamer_tag}, " }
-        if params[:alternative_gamer_tags].present? and params[:alternative_gamer_tags] != alts
-          params[:alternative_gamer_tags].split(',').each do |alt|
-            AlternativeGamerTag.create(player_id: @player.id, gamer_tag: alt.strip)
-          end
-        end
         # render
         format.html { redirect_to @player, notice: t('flash.notice.player_updated') }
         format.json { render :show, status: :ok, location: @player }
@@ -143,11 +116,9 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:gamer_tag, :points, :participations,
-        :self_assessment, :tournament_experience, :comment, :best_rank, :wins,
-        :losses, :main_characters, :created_at, :updated_at, :canton, :gender,
-        :birth_year, :prefix, :discord_username, :twitter_username,
-        :instagram_username, :youtube_video_ids)
+      params.require(:player).permit(:name, :surname, :patronymic, :comment, :best_rank, :wins,
+        :losses, :created_at, :updated_at, :canton, :gender,
+        :birth_year)
     end
 
 end

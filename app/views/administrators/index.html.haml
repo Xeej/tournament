@@ -10,7 +10,7 @@
             %strong
               = admin.full_name || '?????? ??????'
           %p
-            = link_to admin.player.gamer_tag, admin.player
+            -# = link_to admin., admin.player
             %br
             = mail_to admin.email, admin.email, body: "#{t('hi')} #{admin.username}\n\n..."
             - if admin.mobile_number.present?

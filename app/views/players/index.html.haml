@@ -19,7 +19,7 @@
           %th= link_to t('players.name'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc', anchor: 'stats')
           %th.text-center= link_to t('players.surname'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc', anchor: 'stats')
           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('players.all_games'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'wins', order: 'asc', anchor: 'stats')
-          %th.text-center= link_to t('players.w_l'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc', anchor: 'stats')
+          %th.text-center= link_to t('w_l'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc', anchor: 'stats')
 
       %tbody.table-content.with-show.player-list-body
         - if @players.any?

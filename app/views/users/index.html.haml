@@ -1,6 +1,6 @@
 .row
   .col
-    %h1.page__title= "User list"
+    %h1.page__title= "Администраторы"
 
 .row
   .col
@@ -31,14 +31,11 @@
 
     %tbody.user-list-body.with-show
       - @users.each do |user|
-        %tr{'data-id': (user.player.present? ? user.player.id : nil), 'data-component'=>'player'}
+        %tr{'data-id': user.id, 'data-component'=>'user'}
           %td= user.username
           %td= user.current_sign_in_at.to_s(:custom_datetime)
           %td.text-center.d-none.d-md-table-cell.d-lg-none.d-xl-table-cell= user.sign_in_count
           %td.text-center.d-none.d-md-table-cell.d-lg-none.d-xl-table-cell
-            - if user.is_club_member
-              .material-icons= 'done'
-          %td.text-center
             - if user.admin?
               .material-icons= 'done'
           %td.text-center
