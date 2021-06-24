@@ -12,12 +12,13 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: db
-  username: user
-  password: pass
+
 
 development:
   <<: *default
+  host: db
+  username: user
+  password: pass
   database: ssb-tournament-manager_development
 
 # Warning: The database defined as "test" will be erased and
