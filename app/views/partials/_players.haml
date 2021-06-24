@@ -20,4 +20,8 @@
             .div{style: 'display: inline;'}
               %span.material-icons{style: 'vertical-align: middle; height: 25px; width: 25px;'}= 'help'
           %td= [player.surname, player.name].join(' ')
-          %td{style: 'text-align: center;'}= "#{player.win_loss_ratio}%"
+          - if player.wins == 0 and player.losses == 0
+            - win_loss_ratio = nil
+          - else
+            - win_loss_ratio = player.win_loss_ratio
+          %td{style: 'text-align: center;'}= win_loss_ratio.nil? ? '-' : "#{win_loss_ratio}%"

@@ -11,7 +11,7 @@ class CreateMatchesTable < ActiveRecord::Migration[5.2]
       t.integer :player2_set_2
       t.integer :player2_set_3
       t.datetime :start_time
-      t.integer :winner
+      t.integer :winner_id
 
       t.timestamps
     end

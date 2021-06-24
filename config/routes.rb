@@ -33,10 +33,13 @@ Rails.application.routes.draw do
 
   get 'players/unregistered' => 'players#unregistered'
   resources :players, except: [:new]
+  resources :matches
 
   # resources :registrations, only: [:update]
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions', passwords: 'users/passwords' }
+  devise_for :users, controllers: {registrations: 'users/registrations',
+                                   sessions: 'users/sessions',
+                                   passwords: 'users/passwords' }, except: [:sign_up]
   resources :users, only: [:index, :update, :destroy]
 
   root to: "welcome#index"

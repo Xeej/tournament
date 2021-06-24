@@ -6,7 +6,7 @@
       %ul
         - @player.errors.full_messages.each do |message|
           %li= message
-  - if current_user.super_admin?
+  - if current_user.super_admin? || current_user.is_admin?
     .field.form-group
       = f.label :name, t('players.name')
       = f.text_field :name, class: 'form-control'

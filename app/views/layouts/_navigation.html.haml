@@ -38,6 +38,9 @@
 
       %li.nav-item{role: "presentation", class: (@section == 'players' ? 'active' : 'inactive')}
         = link_to t('players.title'), players_path, class: 'nav-link'
+      
+      %li.nav-item{role: "presentation", class: (@section == 'matches' ? 'active' : 'inactive')}
+        = link_to t('matches.title'), matches_path, class: 'nav-link'
 
       %li.nav-item{role: "presentation", class: (@section == 'rules' ? 'active' : 'inactive')}
         = link_to t('rules.title'), rules_path, class: 'nav-link'
@@ -78,7 +81,7 @@
               = current_user.username
               - if current_user.admin?
                 = t('navigation.account.admin')
-            = link_to t('navigation.account.account'), edit_user_registration_path, class: 'dropdown-item'
+            -# = link_to t('navigation.account.account'), edit_user_registration_path, class: 'dropdown-item'
             - if current_user.admin?
               .dropdown-divider
               = link_to t('navigation.account.show_all_users'), users_path, class: 'dropdown-item'

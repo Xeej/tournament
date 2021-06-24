@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable
          # Besides :streches, you can define:
          # :pepper, :encryptor, :confirm_within, :remember_for, :timeout_in, :unlock_in, ...

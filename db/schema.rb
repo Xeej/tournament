@@ -10,22 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_23_185241) do
+ActiveRecord::Schema.define(version: 2021_06_24_173542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "matches", force: :cascade do |t|
-    t.bigint "tournament_id"
-    t.bigint "challonge_match_id"
-    t.bigint "player1_id"
-    t.bigint "player2_id"
-    t.integer "player1_score"
-    t.integer "player2_score"
+    t.integer "player_id_1"
+    t.integer "player_id_2"
+    t.integer "player1_set_1"
+    t.integer "player1_set_2"
+    t.integer "player1_set_3"
+    t.integer "player2_set_1"
+    t.integer "player2_set_2"
+    t.integer "player2_set_3"
+    t.datetime "start_time"
+    t.integer "winner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "braacket_match_id"
-    t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
   create_table "news", force: :cascade do |t|
