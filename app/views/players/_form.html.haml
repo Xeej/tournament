@@ -2,17 +2,17 @@
 
   - if @player.errors.any?
     #error_explanation
-      %h2= pluralize(@player.errors.count, "error") + ' ' + t('players.prohibited')
+      %h2= t('players.prohibited')
       %ul
         - @player.errors.full_messages.each do |message|
           %li= message
   - if current_user.super_admin? || current_user.is_admin?
     .field.form-group
       = f.label :name, t('players.name')
-      = f.text_field :name, class: 'form-control'
+      = f.text_field :name, include_blank: false, class: 'form-control'
     .field.form-group
       = f.label :surname, t('players.surname')
-      = f.text_field :surname, class: 'form-control'
+      = f.text_field :surname, include_blank: false, class: 'form-control'
     -# .field.form-group
     -#   = f.label :discord_username, t('players.patronymic')
     -#  %em= "(User#1234)"
@@ -39,19 +39,19 @@
     -#   = f.number_field :best_rank, class: 'form-control'
     .field.form-group
       = f.label :wins, t('players.wins')
-      = f.number_field :wins, class: 'form-control'
+      = f.number_field :wins, min:0, max:7, include_blank: true, class: 'form-control'
     .field.form-group
       = f.label :losses, t('players.losses')
-      = f.number_field :losses, class: 'form-control'
+      = f.number_field :losses, min:0, max:7, include_blank: true, class: 'form-control'
   -# .field.form-group
   -#   = f.label :canton, t('players.canton')
   -#   = f.select :canton, options_for_select(cantons_for_select, @player.canton), {include_blank: true}, class: 'form-control'
   .field.form-group
     = f.label :gender, t('players.gender')
     = f.select :gender, options_for_select(genders_for_select, @player.gender), {include_blank: true}, class: 'form-control'
-  .field.form-group
-    = f.label :birth_year, t('players.birth_year')
-    = f.select :birth_year, options_for_select(birth_years, @player.birth_year), {include_blank: true}, class: 'form-control'
+  -# .field.form-group
+  -#   = f.label :birth_year, t('players.birth_year')
+  -#   = f.select :birth_year, options_for_select(birth_years, @player.birth_year), {include_blank: true}, class: 'form-control'
   .field.form-group
   -#   = f.label :self_assessment, t('players.self_assessment')
   -#   = f.select :self_assessment, options_for_select(self_assessment_defines.map.with_index{|d, i|[d, i]}, @player.self_assessment), {}, class: 'form-control'
@@ -84,4 +84,4 @@
   -#   = f.text_area :youtube_video_ids, class: 'form-control', rows: '3'
 
   .actions.form-group
-    = f.submit class:'btn btn-ghost', value: t('players.update_profile')
+    = f.submit class:'btn btn-ghost', value: t('players.save')

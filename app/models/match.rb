@@ -22,9 +22,9 @@ class Match < ApplicationRecord
   def destroy_players_score
     return if winner_id.nil?
 
-    current_loser, current_winner = player1.id.eql?(self.winner_id) ? [player2, player1] : [player1, player2]
-    current_loser.update(losses: current_loser.losses - 1)
-    current_winner.update(wins: current_winner.wins - 1)
+    current_loser, current_winner = player1&.id.eql?(self.winner_id) ? [player2, player1] : [player1, player2]
+    current_loser&.update(losses: current_loser.losses - 1)
+    current_winner&.update(wins: current_winner.wins - 1)
   end
 
   def winner_create
@@ -105,11 +105,11 @@ class Match < ApplicationRecord
   end
 
   def player1
-    Player.find(self.player_id_1)
+    Player.find_by(id: self.player_id_1)
   end
 
   def player2
-    Player.find(self.player_id_2)
+    Player.find_by(id: self.player_id_2)
   end
 
   def player_winner

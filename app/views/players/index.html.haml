@@ -10,16 +10,20 @@
         = search_field_tag :search, params[:search], class: 'form-control', placeholder: t('players.search')
         = button_tag type: 'submit', class: 'btn btn-ghost', name: nil do
           %span.material-icons= 'search'
+-if current_user.present? && current_user.super_admin?
+  .row
+    = link_to new_player_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
+      %span.material-icons.admin-actions__link__icon= 'add'
 
-.tab-content#players-tabs-content
-  .tab-pane.fade.show.active#stats{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
+.tab-content
+  .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
     %table.table.table-hover.table-borderless
       %thead.table-header
         %tr
-          %th= link_to t('players.name'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc', anchor: 'stats')
-          %th.text-center= link_to t('players.surname'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc', anchor: 'stats')
-          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('players.all_games'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'wins', order: 'asc', anchor: 'stats')
-          %th.text-center= link_to t('w_l'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc', anchor: 'stats')
+          %th= link_to t('players.name'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc')
+          %th.text-center= link_to t('players.surname'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc')
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('players.all_games'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'wins', order: 'asc')
+          %th.text-center= link_to t('w_l'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc')
 
       %tbody.table-content.with-show.player-list-body
         - if @players.any?
@@ -39,6 +43,9 @@
                   .admin-list-actions__link
                     = link_to edit_player_path(player), class:'btn btn-ghost btn-square' do
                       %span.material-icons.admin-actions__link__icon= 'edit'
+                  .admin-list-actions__link
+                    = link_to player, method: :delete, data: { confirm: t('players.delete') }, class: 'btn btn-sstm btn-square' do
+                      %span.material-icons.admin-actions__link__icon= 'delete'
 
     .player-list-footer
       = render 'paginator', players: @players, anchor: 'stats'

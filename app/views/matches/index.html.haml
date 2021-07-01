@@ -16,14 +16,14 @@
       %span.material-icons.admin-actions__link__icon= 'add'
 
 .tab-content#matches-tabs-content
-  .tab-pane.fade.show.active#stats{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
+  .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
     %table.table.table-hover.table-borderless
       %thead.table-header
         %tr
-          %th= link_to t('matches.player1'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc', anchor: 'stats')
-          %th.text-center= link_to t('matches.player1'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc', anchor: 'stats')
-          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.start_time'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'start_time', order: 'asc', anchor: 'stats')
-          %th.text-center= link_to t('matches.winner'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc', anchor: 'stats')
+          %th= link_to t('matches.player1'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc')
+          %th.text-center= link_to t('matches.player2'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc')
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.start_time'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'start_time', order: 'asc')
+          %th.text-center= link_to t('matches.winner'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc')
 
       %tbody.table-content.with-show.player-list-body
         - if @matches.any?

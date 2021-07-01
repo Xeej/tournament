@@ -34,6 +34,9 @@
           .admin-actions__link
             = link_to edit_player_path(@player), class:'btn btn-ghost btn-square' do
               %span.material-icons.admin-actions__link__icon= 'edit'
+          .admin-list-actions__link
+            = link_to @match, method: :delete, data: { confirm: t('players.delete') }, class: 'btn btn-sstm btn-square' do
+              %span.material-icons.admin-actions__link__icon= 'delete'
 
   -# - if @player.tournaments.any? or youtube_video_ids.any?
   -#   %ul#player-tabs.nav.nav-pills.nav-fill{role: 'tablist'}
@@ -72,12 +75,13 @@
                 = @player.surname
               %span
                 = t('players.surname')
-          .col
-            .player__stats__single{class: (@player.patronymic.nil?) ? 'player__stats__single--last' : ''}
-              %strong
-                = @player.patronymic
-              %span
-                = t('players.patronymic')
+          - if @player.patronymic.present?
+            .col
+              .player__stats__single{class: (@player.patronymic.nil?) ? 'player__stats__single--last' : ''}
+                %strong
+                  = @player.patronymic
+                %span
+                  = t('players.patronymic')
       - if @player.birth_year.present? || @player.gender.present?
         .player__stats
           .row
