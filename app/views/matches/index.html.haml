@@ -10,7 +10,7 @@
         = search_field_tag :search, params[:search], class: 'form-control', placeholder: t('players.search')
         = button_tag type: 'submit', class: 'btn btn-ghost', name: nil do
           %span.material-icons= 'search'
--if current_user.is_admin? || current_user.super_admin?
+-if current_user.present? && current_user.super_admin?
   .row
     = link_to new_match_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
       %span.material-icons.admin-actions__link__icon= 'add'
