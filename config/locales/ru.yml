@@ -2,8 +2,8 @@ ru:
   login: "Логин"
   feedback_and_questions: "Feedback & Questions"
   please_donate: "Поддержать"
-
-  username: "Логин"
+  email: 'Логин'
+  username: "Профиль"
   password: "Пароль"
   log_in: "Зайти"
   sign_up: "Sign up"
@@ -74,7 +74,7 @@ ru:
 
   flash:
     notice:
-      creating_player: "Player was successfully created. Check out other players or look for a tournament you would like to join"
+      creating_player: "Игрок успешно создан"
       updating_user: "User was successfully updated"
       deleting_user: "User was successfully deleted"
       updating_registration: "Registration was successfully updated"
@@ -104,7 +104,13 @@ ru:
       feedback_created: "Feedback or Question was successfully created"
       feedback_updated: "Feedback or Question was successfully updated"
       feedback_deleted: "Feedback or Question was successfully deleted"
-      player_updated: "Player was successfully updated"
+      player_updated: "Игрок успешно изменен"
+      player_created: "Игрок успешно создан"
+      player_destroyed: "Игрок успешно удален"
+      match_updated: "Матч успешно изменен"
+      match_created: "Матч успешно создан"
+      match_destroyed: "Матч успешно удален"
+
 
     alert:
       creating_player: "Creating player failed! You may have selected an already taken gamer tag. Please try again"
@@ -404,6 +410,22 @@ ru:
     past_tournaments: "Past Tournaments"
     videos: "Videos"
     individuals: "Individuals"
+  
+  matches:
+    title: "Матчи"
+    player1: "Первый игрок"
+    player2: "Второй игрок"
+    set_1: "Первый сет"
+    set_2: "Второй сет"
+    set_3: "Третий сет"
+    start_time: "Начало игры"
+    winner: "Победитель"
+    prohibited: "Ошибка"
+    delete: 'Вы уверены что хотите удалить матч?'
+    edit: 'Редактирование матча'
+    save: 'Сохранить матч'
+    create: 'Создание матча'
+    no_matches_found: 'Матчей нет'
 
   statistics:
     title: "Statistics"
@@ -660,3 +682,32 @@ ru:
       custom_datetime_date_and_no_time: "%d %B"
       custom_datetime_weekday_date_and_year: "%A, %d %B %Y"
       custom_datetime_with_weekday: "%A, %d %B at %H:%M"
+  
+  models: &models
+    match: 'Матч'
+
+  attributes: &attributes
+    match:
+      player2_set_1: 'Первый сет второго игрока'
+      player2_set_2: 'Второй сет второго игрока'
+      player2_set_3: 'Третий сет второго игрока'
+      player1_set_1: 'Первый сет первого игрока'
+      player1_set_2: 'Второй сет первого игрока'
+      player1_set_3: 'Третий сет первого игрока'
+      
+  errors: &errors
+    format: ! '%{attribute} %{message}'
+    messages:
+      accepted: должен присутствовать
+      blank: не может быть пустым
+      # ...
+      
+  activerecord:
+    errors: *errors
+    models: *models
+    attributes: *attributes
+
+  activemodel:
+    errors: *errors
+    models: *models
+    attributes: *attributes

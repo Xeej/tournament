@@ -1,0 +1,94 @@
+.row
+  .col
+    %h1.page__title= t('matches.title')
+
+-# search form
+.row{style: 'margin-top: -15px;'}
+  .col
+    .search-form.form-group
+      = form_tag matches_path, method: 'get', class: 'form-inline' do
+        = search_field_tag :search, params[:search], class: 'form-control', placeholder: t('players.search')
+        = button_tag type: 'submit', class: 'btn btn-ghost', name: nil do
+          %span.material-icons= 'search'
+-if current_user.is_admin? || current_user.super_admin?
+  .row
+    = link_to new_match_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
+      %span.material-icons.admin-actions__link__icon= 'add'
+
+.tab-content#matches-tabs-content
+  .tab-pane.fade.show.active#stats{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
+    %table.table.table-hover.table-borderless
+      %thead.table-header
+        %tr
+          %th= link_to t('matches.player1'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc', anchor: 'stats')
+          %th.text-center= link_to t('matches.player1'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc', anchor: 'stats')
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.start_time'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'start_time', order: 'asc', anchor: 'stats')
+          %th.text-center= link_to t('matches.winner'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc', anchor: 'stats')
+
+      %tbody.table-content.with-show.player-list-body
+        - if @matches.any?
+          - @matches.each_with_index do |match, i|
+            %tr{'data-id': match.id, 'data-component'=>'matche'}
+              %td= [match.player1.name, match.player1.surname].join(' ')
+              %td.text-center= [match.player2.name, match.player2.surname].join(' ')
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= match.start_time.strftime("%Y-%m-%d")
+              %td.text-center
+                - if match.winner_id.blank?
+                  = '-'
+                - else
+                  = "#{match.player_winner.surname} #{match.player_winner.name}"
+              - if current_user.present? and current_user.super_admin?
+                %td.admin-list-actions
+                  .admin-list-actions__link
+                    = link_to edit_match_path(match), class:'btn btn-ghost btn-square' do
+                      %span.material-icons.admin-actions__link__icon= 'edit'
+                  .admin-list-actions__link
+                    = link_to match, method: :delete, data: { confirm: t('matches.delete') }, class: 'btn btn-sstm btn-square' do
+                      %span.material-icons.admin-actions__link__icon= 'delete'
+
+    .player-list-footer
+      = render 'paginator', matches: @matches, anchor: 'stats'
+
+  -# .tab-pane.fade#data{role: 'tabpanel', 'aria-labelledby'=>'data-tab'}
+  -#   %table.table.table-hover.table-borderless
+  -#     %thead.table-header
+  -#       %tr
+  -#         %th= link_to t('matches.gamer_tag'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'gamer_tag', order: 'asc', anchor: 'data')
+  -#         %th.text-center= link_to t('matches.canton'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'canton', order: 'asc', anchor: 'data')
+  -#         %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.age'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'birth_year', order: 'asc', anchor: 'data')
+  -#         %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.gender'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'gender', order: 'asc', anchor: 'data')
+  -#         %th.text-center= link_to t('matches.comment'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'comment', order: 'desc', anchor: 'data')
+
+  -#     %tbody.table-content.with-show
+  -#       - if @matches.any?
+  -#         - @matches.each_with_index do |player, i|
+  -#           %tr{'data-id': player.id, 'data-component'=>'player'}
+  -#             %td
+  -#               - if player.main_characters.any?
+  -#                 - player.main_characters[0...1].each do |char|
+  -#                   - if File.file?("#{Rails.root}/app/assets/images/characters/#{char}.png")
+  -#                     = image_tag "characters/#{char}.png", height: '25px', width: '25px'
+  -#               - else
+  -#                 .div{style: 'display: inline;'}
+  -#                   %span.material-icons{style: 'vertical-align: middle; height: 25px; width: 25px;'}= 'help'
+  -#               = player.prefix.present? ? "#{player.prefix} | #{player.gamer_tag}" : player.gamer_tag
+  -#             %td.text-center
+  -#               - if player.canton.present?
+  -#                 = image_tag "cantons/#{player.canton}.svg", height: '20px', width: '20px'
+  -#                 = t("defines.cantons.#{player.canton}")
+  -#             %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= player.birth_year.nil? ? '' : (Date.today.year - player.birth_year)
+  -#             %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= (player.gender.nil? or player.gender.empty?) ? "" : t("defines.genders.#{player.gender}")
+  -#             %td.text-center= truncate(player.comment, length: 60)
+
+  -#             - if current_user.present? and current_user.super_admin?
+  -#               %td.admin-list-actions
+  -#                 .admin-list-actions__link
+  -#                   = link_to edit_player_path(player), class:'btn btn-ghost btn-square' do
+  -#                     %span.material-icons.admin-actions__link__icon= 'edit'
+
+    .player-list-footer
+      = render 'paginator', matches: @matches, anchor: 'data'
+
+  - if !@matches.any?
+    %p{style: 'text-align: center;'}
+    = t('matches.no_matches_found')

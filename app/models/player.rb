@@ -6,6 +6,8 @@ class Player < ApplicationRecord
   # has_many :tournaments, through: :registrations
 
   before_validation :strip_whitespace
+  before_validation :default_win_loses
+  # after_destroy :destroy_matches
 
   # scope :from_2019, -> { where('created_at >= ? AND created_at < ?', Time.local(2019,1,1), Time.local(2020,1,1)) }
   # scope :from_2020, -> { where('created_at >= ? AND created_at < ?', Time.local(2020,1,1), Time.local(2021,1,1)) }
@@ -23,6 +25,11 @@ class Player < ApplicationRecord
     else
       :all
     end
+  end
+
+  def default_win_loses
+    self.wins ||= 0
+    self.losses ||= 0
   end
 
   def self.iLikeSearch(search)
