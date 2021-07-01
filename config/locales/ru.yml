@@ -366,7 +366,7 @@ ru:
 
   players:
     title: "Игроки"
-    prohibited: "prohibited this player from being saved:"
+    prohibited: "Ошибка при сохранении игрока"
     gamer_tag: "Gamer tag"
     name: "Имя"
     surname: "Фамилия"
@@ -410,6 +410,10 @@ ru:
     past_tournaments: "Past Tournaments"
     videos: "Videos"
     individuals: "Individuals"
+    create: 'Создание игрока'
+    edit: 'Редактиование игрока'
+    delete: 'Вы уверены что хотите удалить игрока?'
+    save: 'Сохранить игрока'
   
   matches:
     title: "Матчи"
@@ -685,7 +689,7 @@ ru:
   
   models: &models
     match: 'Матч'
-
+    player: 'Игрок'
   attributes: &attributes
     match:
       player2_set_1: 'Первый сет второго игрока'
@@ -694,6 +698,10 @@ ru:
       player1_set_1: 'Первый сет первого игрока'
       player1_set_2: 'Второй сет первого игрока'
       player1_set_3: 'Третий сет первого игрока'
+    player:
+      name: 'Имя'
+      surname: 'Фамилия'
+      gender: 'Пол'
       
   errors: &errors
     format: ! '%{attribute} %{message}'

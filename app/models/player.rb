@@ -4,17 +4,24 @@ class Player < ApplicationRecord
   # has_many :registrations, dependent: :destroy
   # has_many :results, dependent: :destroy
   # has_many :tournaments, through: :registrations
+  validates :surname, presence: true, on: :create
+  validates :name, presence: true, on: :create
+  validates :gender, presence: true, on: :create
 
   before_validation :strip_whitespace
   before_validation :default_win_loses
-  # after_destroy :destroy_matches
+  before_destroy :destroy_matches
 
   # scope :from_2019, -> { where('created_at >= ? AND created_at < ?', Time.local(2019,1,1), Time.local(2020,1,1)) }
   # scope :from_2020, -> { where('created_at >= ? AND created_at < ?', Time.local(2020,1,1), Time.local(2021,1,1)) }
   # scope :from_2021, -> { where('created_at >= ? AND created_at < ?', Time.local(2021,1,1), Time.local(2022,1,1)) }
 
-  MAX_PLAYERS_PER_PAGE = 50
+  MAX_PLAYERS_PER_PAGE = 10
   MAX_PLAYER_VIDEOS_PER_PAGE = 5
+
+  def destroy_matches
+    matches.destroy_all
+  end
 
   def self.search(search)
     if search
@@ -79,25 +86,10 @@ class Player < ApplicationRecord
   end
 
   def matches
-    Match.where(player1_id: self.id).or(Match.where(player2_id: self.id))
+    Match.where(player_id_2: id).or(Match.where(player_id_1: id))
   end
 
   def strip_whitespace
     # self.gamer_tag.try(:strip!)
-  end
-
-  def update_tournament_experience
-    if self.participations == 0
-      self.tournament_experience = 0 if self.tournament_experience < 0 # None
-    elsif self.participations < 5
-      self.tournament_experience = 1 if self.tournament_experience < 1 # A little
-    elsif self.participations < 10
-      self.tournament_experience = 2 if self.tournament_experience < 2 # Some
-    elsif self.participations < 30
-      self.tournament_experience = 3 if self.tournament_experience < 3 # A lot
-    else
-      self.tournament_experience = 4 if self.tournament_experience < 4 # Very much
-    end
-    self.save
   end
 end

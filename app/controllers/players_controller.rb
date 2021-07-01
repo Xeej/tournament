@@ -63,29 +63,45 @@ class PlayersController < ApplicationController
   end
 
   # # GET /players/new
-  # def new
-  #   @player = Player.new
-  # end
+  def new
+    @player = Player.new
+  end
 
   # GET /players/1/edit
   def edit
   end
 
+
+
   # # POST /players
   # # POST /players.json
-  # def create
-  #   @player = Player.new(player_params)
-  #
-  #   respond_to do |format|
-  #     if @player.save
-  #       format.html { redirect_to @player, notice: 'Player was successfully created.' }
-  #       format.json { render :show, status: :created, location: @player }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @player.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def create
+    @player = Player.new(player_params)
+  
+    respond_to do |format|
+      if @player.save
+        format.html { redirect_to @player, notice: t('flash.notice.player_created') }
+        format.json { render :show, status: :created, location: @player }
+      else
+        format.html { render :new }
+        format.json { render json: @player.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # # DELETE /players
+  # # DELETE /players.json
+  def destroy
+    if current_user.super_admin? or current_user.is_admin?
+      if @player.destroy
+        # render
+        redirect_to players_path, notice: t('flash.notice.player_destroyed')
+      else
+        format.html { render :new }
+        format.json { render json: @match.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # PATCH/PUT /players/1
   # PATCH/PUT /players/1.json

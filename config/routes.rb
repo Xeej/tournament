@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   # resources :news
   # resources :feedbacks
-  get 'administrators' => 'administrators#index'
+  # get 'administrators' => 'administrators#index'
   # get 'imprint' => 'imprint#index'
   # get 'privacy_policy' => 'privacy_policy#index'
 
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
   # patch 'tournaments/seed_players/:id' => 'tournaments#seed_players'
 
   get 'players/unregistered' => 'players#unregistered'
-  resources :players, except: [:new]
+  resources :players
   resources :matches
 
   # resources :registrations, only: [:update]
