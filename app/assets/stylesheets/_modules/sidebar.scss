@@ -7,4 +7,15 @@
     text-align: center;
     border-bottom: 1px solid $color-grey-light;
   }
+  .player__characters__image_micro {
+    width: 35px; 
+    //min-width: 25px; 
+    height: auto;
+    border-radius: 10px;
+    // border-style: inset;
+    // border-top-color: $color-red;
+    // border-left-color: $color-red;
+    // border-right-color: $color-grey;
+    // border-bottom-color: $color-grey;
+  }
 }

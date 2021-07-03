@@ -414,6 +414,7 @@ ru:
     edit: 'Редактиование игрока'
     delete: 'Вы уверены что хотите удалить игрока?'
     save: 'Сохранить игрока'
+    photo: 'Фото игрока'
   
   matches:
     title: "Матчи"
@@ -430,6 +431,7 @@ ru:
     save: 'Сохранить матч'
     create: 'Создание матча'
     no_matches_found: 'Матчей нет'
+    format_time: '%d/%m/%Y %H:%M'
 
   statistics:
     title: "Statistics"

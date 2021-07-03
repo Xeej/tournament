@@ -20,8 +20,8 @@
     %table.table.table-hover.table-borderless
       %thead.table-header
         %tr
-          %th= link_to t('players.name'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc')
-          %th.text-center= link_to t('players.surname'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc')
+          %th= link_to t('players.surname'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc')
+          %th.text-center= link_to t('players.name'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'name', order: 'asc')
           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('players.all_games'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'wins', order: 'asc')
           %th.text-center= link_to t('w_l'), players_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc')
 
@@ -30,8 +30,11 @@
           - last_player_points = nil
           - @players.each_with_index do |player, i|
             %tr{'data-id': player.id, 'data-component'=>'player'}
-              %td= player.name
-              %td.text-center= player.surname
+              %td
+                - if player.photo.present?
+                  %img{src:"data:image/png;base64,#{player.photo}",class: 'player__characters__image_micro'}
+                =player.surname
+              %td.text-center= player.name
               %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= player.wins.to_i + player.losses.to_i
               %td.text-center
                 - if player.losses == 0 and player.wins == 0

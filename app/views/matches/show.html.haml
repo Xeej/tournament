@@ -54,71 +54,80 @@
   .tab-content#information-tabs-content
     -# data ----------------------------------------------------------------------
     .tab-pane.fade.show.active#data{role: 'tabpanel', 'aria-labelledby'=>'data-tab'}
-      -# .player__characters
-      -#   - if @player.main_characters.any?
-      -#     - @player.main_characters[0...3].each do |char|
-      -#       - if File.file?("#{Rails.root}/app/assets/images/characters/#{char}_200x200.png")
-      -#         .player__characters__single
-      -#           = image_tag "characters/#{char}_200x200.png", class: 'player__characters__image'
+      -# добавить связи в бд, чтобы не было n + 1     
       .player__stats 
         .row
           .col
             .player__stats__single{class: @match.player1.nil? ? 'player__stats__single--last' : ''}
+              - if @match.player1.photo.present?
+                %span
+                  %img{src:"data:image/png;base64,#{@match.player1.photo}",class: 'player__characters__image_mini'}
               %span
                 = t('matches.player1')
-              %strong
-                = [@match.player1.name, @match.player1.surname].join(' ')
+              =link_to @match.player1 do
+                %strong
+                  = [@match.player1.name, @match.player1.surname].join(' ')
           - if @match.player1_set_1.present?
             .col
               .player__stats__single{class: @match.player1_set_1.nil? ? 'player__stats__single--last' : ''}
-                %span
-                  = t('matches.set_1')
-                %strong
-                  = @match.player1_set_1 || ''
+                .set
+                  %span
+                    = t('matches.set_1')
+                  %strong
+                    = @match.player1_set_1 || ''
           - if @match.player1_set_2.present?
             .col
               .player__stats__single{class: @match.player1_set_2.nil? ? 'player__stats__single--last' : ''}
-                %span
-                  = t('matches.set_2')
-                %strong
-                  = @match.player1_set_2 || ''
+                .set
+                  %span
+                    = t('matches.set_2')
+                  %strong
+                    = @match.player1_set_2 || ''
           - if @match.player1_set_3.present?
             .col
               .player__stats__single{class: @match.player1_set_3.nil? ? 'player__stats__single--last' : ''}
-                %span
-                  = t('matches.set_3')
-                %strong
-                  = @match.player1_set_3 || ''
+                .set
+                  %span
+                    = t('matches.set_3')
+                  %strong
+                    = @match.player1_set_3 || ''
 
       .player__stats 
         .row    
           .col
             .player__stats__single{class: (@match.player2.nil?) ? 'player__stats__single--last' : ''}
+              - if @match.player2.photo.present?
+                %span
+                  %img{src:"data:image/png;base64,#{@match.player2.photo}",class: 'player__characters__image_mini'}
               %span
                 = t('matches.player2')
-              %strong
-                = [@match.player2.name, @match.player2.surname].join(' ')
+              =link_to @match.player2 do
+                %strong
+                  = [@match.player2.name, @match.player2.surname].join(' ')
           -if @match.player2_set_1.present?
             .col
               .player__stats__single{class: @match.player2_set_1.nil? ? 'player__stats__single--last' : ''}
-                -# %span
-                -#   = t('matches.set_1')
-                %strong
-                  = @match.player2_set_1 || ''
+                .set
+                  %span
+                    = t('matches.set_1')
+                  %strong
+                    = @match.player2_set_1 || ''
           -if @match.player2_set_2.present?  
             .col
               .player__stats__single{class: @match.player2_set_2.nil? ? 'player__stats__single--last' : ''}
-                -# %span
-                -#   = t('matches.set_2')
-                %strong
-                  = @match.player2_set_2 || ''
+                .set
+                  %span
+                    = t('matches.set_2')
+                  %strong
+                    = @match.player2_set_2 || ''
           -if @match.player2_set_3.present?        
             .col
               .player__stats__single{class: @match.player2_set_3.nil? ? 'player__stats__single--last' : ''}
-                -# %span
-                -#   = t('matcheses.set_3')
-                %strong
-                  = @match.player2_set_3 || ''
+                .set
+                  %span
+                    = t('matcheses.set_3')
+                  %strong
+                    = @match.player2_set_3 || ''
           -# .col
           -#   .player__stats__single{class: (@player.patronymic.nil?) ? 'player__stats__single--last' : ''}
           -#     %strong
@@ -137,8 +146,9 @@
             -#       = t('players.best_rank')
             .col
               .player__stats__single
-                %strong
-                  = [@match.player_winner.name, @match.player_winner.surname].join(' ')
+                = link_to @match.player_winner do
+                  %strong
+                    = [@match.player_winner.name, @match.player_winner.surname].join(' ')
                 %span
                   = t('matches.winner')
       .player__stats 
@@ -146,7 +156,7 @@
           .col
             .player__stats__single{class: @match.start_time.nil? ? 'player__stats__single--last' : ''}
               %strong
-                = @match.start_time.strftime("%d/%m/%Y %H:%M")
+                = @match.start_time.strftime(t('matches.format_time'))
               %span
                 = t('matches.start_time')
             -# .col

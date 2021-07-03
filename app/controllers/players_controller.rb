@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
   require 'will_paginate/array'
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :encode_photo, only: [:update, :create]
   before_action { @section = 'Игроки' }
 
   # GET /players
@@ -76,7 +77,7 @@ class PlayersController < ApplicationController
   # # POST /players
   # # POST /players.json
   def create
-    @player = Player.new(player_params)
+    @player = Player.new(player_params.merge(photo: @photo))
   
     respond_to do |format|
       if @player.save
@@ -107,8 +108,7 @@ class PlayersController < ApplicationController
   # PATCH/PUT /players/1.json
   def update
     respond_to do |format|
-      
-      if @player.update(player_params)
+      if @player.update(player_params.merge(photo: @photo))
         @player.save
         # render
         format.html { redirect_to @player, notice: t('flash.notice.player_updated') }
@@ -125,6 +125,11 @@ class PlayersController < ApplicationController
   end
 
   private
+
+    def encode_photo
+      photo = player_params['photo']&.read
+      @photo = photo.nil? ? @player.photo : Base64&.encode64(photo)&.gsub("\n",'')
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
@@ -134,7 +139,7 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:name, :surname, :patronymic, :comment, :best_rank, :wins,
         :losses, :created_at, :updated_at, :canton, :gender,
-        :birth_year)
+        :birth_year, :photo)
     end
 
 end

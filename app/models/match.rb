@@ -17,7 +17,7 @@ class Match < ApplicationRecord
   validate :players_eql, on: [:create, :update]
   before_update :winner_update
   before_create :winner_create
-  after_destroy :destroy_players_score
+  before_destroy :destroy_players_score
 
   def destroy_players_score
     return if winner_id.nil?
@@ -47,11 +47,11 @@ class Match < ApplicationRecord
     old_winner&.update(wins: old_winner.wins - 1)
     player_winner&.reload&.update(wins: player_winner.wins + 1)
     
-    old_loser = old_match.player1.id.eql?(old_match.winner_id) ? old_match.player2 : old_match.player1
-    old_loser&.update(losses: old_loser.losses - 1)
+    old_loser = old_match.player1.id.eql?(old_winner&.id) ? old_match.player2 : old_match.player1
+    old_loser&.update(losses: old_loser.losses - 1) unless old_winner.nil?
 
     current_loser = player1.id.eql?(self.winner_id) ? player2 : player1
-    current_loser&.reload&.update(losses: old_loser.losses + 1)
+    current_loser&.reload&.update(losses: current_loser.losses + 1) unless player_winner.nil?
   end
 
   def calc_winner

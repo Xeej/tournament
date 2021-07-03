@@ -168,12 +168,12 @@ en:
       player: "Player"
 
   welcome:
-    title: "Welcome to SwissSmash"
+    title: "Welcome to VS Open"
     body1: "If you want to stay up-to-date with the Swiss Smash Community, join us on %{discord_link} and follow the Swiss Smash %{twitter_link} Account."
     body2: "You can find the upcoming events in the %{tournaments_link} or in the %{calendar_link}."
     tournament_list: "Tournaments list"
     calendar: "Calendar"
-    body3: "%{log_in_link} or %{sign_up_link} if you haven't yet, to be able to join a tournament and write a feedback or a question."
+    body3: "%{log_in_link}"
     log_in: "Log in"
     sign_up: "Sign up"
 
@@ -402,6 +402,28 @@ en:
     past_tournaments: "Past Tournaments"
     videos: "Videos"
     individuals: "Individuals"
+    create: 'Create player'
+    edit: 'Edit player'
+    delete: 'Are you sure you want to delete the player?'
+    save: 'Save player'
+    photo: 'Photo player'
+  
+  matches:
+    title: "Matches"
+    player1: "First player"
+    player2: "Second player"
+    set_1: "First set"
+    set_2: "Second set"
+    set_3: "Fhird set"
+    start_time: "Start time"
+    winner: "Winner"
+    prohibited: "Error"
+    delete: 'Are you sure you want to delete the match?'
+    edit: 'Edit match'
+    save: 'Save match'
+    create: 'Create match'
+    no_matches_found: 'Matches not found'
+    format_time: '%d/%m/%Y %H:%M'
 
   statistics:
     title: "Statistics"

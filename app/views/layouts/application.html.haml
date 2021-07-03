@@ -24,17 +24,17 @@
         = image_tag 'banner.jpg', class: 'banner__image'
       .container
         .row
-          - if request.original_fullpath == '/calendar'
-            .col-12
-              .content
-                = yield
-          - else
-            .d-none.d-lg-block.col-lg-3
-              .sidebar
-                = render '/partials/players'
-            .col-12.col-lg-9
-              .content
-                = yield
+          -# - if request.original_fullpath == '/calendar'
+          -#   .col-12
+          -#     .content
+          -#       = yield
+          -# - else
+          .d-none.d-lg-block.col-lg-3
+            .sidebar
+              = render '/partials/players'
+          .col-12.col-lg-9
+            .content
+              = yield
     .footer
       .container
         .row.footer-nav
