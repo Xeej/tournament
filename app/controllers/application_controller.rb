@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_top_players
-    @topPlayers = Player.select(:id, :name, :surname, :wins, :losses).sort_by(&:win_loss_ratio).reverse.first(5)
+    @topPlayers = Player.select(:id, :name, :surname, :wins, :losses, :photo).sort_by(&:win_loss_ratio).reverse.first(5)
   end
 
   def get_next_tournaments

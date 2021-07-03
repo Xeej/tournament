@@ -6,6 +6,13 @@
       %ul
         - @player.errors.full_messages.each do |message|
           %li= message
+  - if @player.photo.present?
+    .player__stats 
+      .row
+        .col
+          .player__stats__single
+            .player__characters__image
+              %img{src:"data:image/png;base64,#{@player.photo}", class: 'player__characters__image', style:"width: 30vw; min-width: 330px; height: auto; min-height: 330px;"}
   - if current_user.super_admin? || current_user.is_admin?
     .field.form-group
       = f.label :name, t('players.name')
@@ -49,6 +56,9 @@
   .field.form-group
     = f.label :gender, t('players.gender')
     = f.select :gender, options_for_select(genders_for_select, @player.gender), {include_blank: true}, class: 'form-control'
+  .field.form-group
+    = f.label :photo, t('players.photo')
+    = f.file_field :photo, accept: 'image/png,image/jpeg'
   -# .field.form-group
   -#   = f.label :birth_year, t('players.birth_year')
   -#   = f.select :birth_year, options_for_select(birth_years, @player.birth_year), {include_blank: true}, class: 'form-control'

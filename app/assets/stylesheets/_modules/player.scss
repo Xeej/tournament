@@ -11,9 +11,6 @@
     display: flex;
     margin: 0 auto;
     justify-content: center;
-    .player__characters__image {
-      max-width: 100%;
-    }
   }
   .player__stats {
     margin-top: 2rem;
@@ -23,11 +20,34 @@
       &.player__stats__single--last {
         border-right: none;
       }
+      .set {
+        strong {
+          padding-top: 2rem;
+        }
+      }
       strong, span {
         display: block;
       }
       span {
         font-size: $font-size-small;
+      }
+      .player__characters__image {
+        width: 30vw; 
+        min-width: 330px; 
+        height: auto; 
+        min-height: 330px;
+        border-radius: 15px;
+      }
+      .player__characters__image_mini {
+        width: 8vw; 
+        min-width: 100px; 
+        height: auto;
+        border-radius: 15px;
+        // border-style: inset;
+        // border-top-color: $color-red;
+        // border-left-color: $color-red;
+        // border-right-color: $color-grey;
+        // border-bottom-color: $color-grey;
       }
     }
   }

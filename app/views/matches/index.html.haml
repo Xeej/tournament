@@ -14,7 +14,8 @@
   .row
     = link_to new_match_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
       %span.material-icons.admin-actions__link__icon= 'add'
-
+-# связать таблицы бд, чтобы не было n + 1
+- players = Player.where(id: @matches.flat_map {|match| [match.player_id_1, match.player_id_2]}.uniq).pluck(:id, :surname, :name, :photo).each_with_object({}) {|player, hash| hash[player[0]] = {surname: player[1], name: player[2], photo: player[3]}}
 .tab-content#matches-tabs-content
   .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
     %table.table.table-hover.table-borderless
@@ -24,19 +25,24 @@
           %th.text-center= link_to t('matches.player2'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'surname', order: 'asc')
           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= link_to t('matches.start_time'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'start_time', order: 'asc')
           %th.text-center= link_to t('matches.winner'), matches_path(search: params[:search], filter: params[:filter], 'filter-data': params['filter-data'], sort: 'win_loss_ratio', order: 'asc')
-
       %tbody.table-content.with-show.player-list-body
         - if @matches.any?
           - @matches.each_with_index do |match, i|
             %tr{'data-id': match.id, 'data-component'=>'matche'}
-              %td= [match.player1.name, match.player1.surname].join(' ')
-              %td.text-center= [match.player2.name, match.player2.surname].join(' ')
-              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= match.start_time.strftime("%Y-%m-%d")
+              %td
+                - if players[match.player_id_1][:photo].present?
+                  %img{src:"data:image/png;base64,#{players[match.player_id_1][:photo]}",class: 'player__characters__image_micro'}
+                = [players[match.player_id_1][:surname], players[match.player_id_1][:name]].join(' ')
+              %td.text-center
+                - if players[match.player_id_2][:photo].present?
+                  %img{src:"data:image/png;base64,#{players[match.player_id_2][:photo]}",class: 'player__characters__image_micro'}
+                = [players[match.player_id_2][:surname], players[match.player_id_2][:name]].join(' ')
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= match.start_time.strftime(t('matches.format_time'))
               %td.text-center
                 - if match.winner_id.blank?
                   = '-'
                 - else
-                  = "#{match.player_winner.surname} #{match.player_winner.name}"
+                  = [players[match.winner_id][:surname], players[match.winner_id][:name]].join(' ')
               - if current_user.present? and current_user.super_admin?
                 %td.admin-list-actions
                   .admin-list-actions__link

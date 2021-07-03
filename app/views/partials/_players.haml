@@ -14,7 +14,8 @@
           - @topPlayers.each_with_index do |player, i|
             %tr{'data-id': player.id, 'data-component'=>'player'}
               %td
-                = i + 1
+                - if player.photo.present?
+                  %img{src:"data:image/png;base64,#{player.photo}",class: 'player__characters__image_micro'}
                 -# - if player
                 -#   -# TODO изображение
                 -#   - if File.file?("#{Rails.root}/app/assets/images/characters/diddy_kong.png")
