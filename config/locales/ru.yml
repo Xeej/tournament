@@ -172,7 +172,8 @@ ru:
       player: "Игрок"
 
   welcome:
-    title: "Добро пожаловать в"
+    title: "Добро пожаловать"
+    title_in: "Добро пожаловать в"
     body1: "If you want to stay up-to-date with the Swiss Smash Community, join us on %{discord_link} and follow the Swiss Smash %{twitter_link} Account."
     body2: "You can find the upcoming events in the %{tournaments_link} or in the %{calendar_link}."
     tournament_list: "Tournaments list"

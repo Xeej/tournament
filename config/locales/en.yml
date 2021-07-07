@@ -168,7 +168,8 @@ en:
       player: "Player"
 
   welcome:
-    title: "Welcome to VS Open"
+    title: "Welcome"
+    title_in: "Welcome in"
     body1: "If you want to stay up-to-date with the Swiss Smash Community, join us on %{discord_link} and follow the Swiss Smash %{twitter_link} Account."
     body2: "You can find the upcoming events in the %{tournaments_link} or in the %{calendar_link}."
     tournament_list: "Tournaments list"
@@ -410,6 +411,10 @@ en:
 
   documents:
     title: 'Documents'
+    vs_open: 'Contition VS Open'
+    touch_tennis: 'Condition Winners cup. Touchtennis challenge'
+    crt: 'Organization registration certificate'
+    download: 'Download document'
   
   matches:
     title: "Matches"
