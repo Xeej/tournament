@@ -407,6 +407,9 @@ en:
     delete: 'Are you sure you want to delete the player?'
     save: 'Save player'
     photo: 'Photo player'
+
+  documents:
+    title: 'Documents'
   
   matches:
     title: "Matches"

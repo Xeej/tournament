@@ -2,9 +2,9 @@
 %html
   %head
     - if @section.present?
-      %title= "VS Open | #{@section.capitalize}"
+      %title= "#{ENV['TOURNAMENT_NAME']} | #{@section.capitalize}"
     - else
-      %title= "VS Open"
+      %title= ENV['TOURNAMENT_NAME']
     %meta{:charset => "utf-8"}
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}
     = favicon_link_tag 'logo.png'

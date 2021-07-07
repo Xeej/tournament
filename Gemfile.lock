@@ -99,6 +99,7 @@ GEM
       warden (~> 1.2.3)
     devise-i18n (1.9.4)
       devise (>= 4.7.1)
+    dotenv (2.7.6)
     erubi (1.10.0)
     erubis (2.7.0)
     exception_notification (4.4.3)
@@ -297,6 +298,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2.2)
   devise
   devise-i18n
+  dotenv
   exception_notification
   figaro
   fullcalendar-rails

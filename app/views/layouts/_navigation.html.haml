@@ -3,7 +3,7 @@
   %a.navbar-brand{href: '/'}
     = image_tag('logo.png', height: '50px', width: '50px')
     %span.d-none.d-sm-block.d-lg-none.d-xl-block
-      = 'VS Open'
+      = ENV['TOURNAMENT_NAME']
   %button.navbar-toggler.collapsed{'data-toggle'=>'collapse', 'data-target'=>'#navbarSupportedContent', 'aria-controls'=>'navbarSupportedContent', 'aria-expanded'=>'false', 'aria-label'=>'Toggle navigation'}
     %span.navbar-toggler-icon
       %span.line.line--1
@@ -43,10 +43,10 @@
         = link_to t('matches.title'), matches_path, class: 'nav-link'
 
       %li.nav-item{role: "presentation", class: (@section == 'rules' ? 'active' : 'inactive')}
-        = link_to t('rules.title'), rules_path, class: 'nav-link'
+        = link_to t('documents.title'), documents_path, class: 'nav-link'
 
-      %li.nav-item{role: "presentation", class: (@section == 'informations' ? 'active' : 'inactive')}
-        = link_to t('information.title_short'), informations_path, class: 'nav-link'
+      -# %li.nav-item{role: "presentation", class: (@section == 'informations' ? 'active' : 'inactive')}
+      -#   = link_to t('information.title_short'), informations_path, class: 'nav-link'
 
       -# %li.nav-item{role: "presentation", class: (@section == 'videos' ? 'active' : 'inactive')}
       -#   = link_to t('video.title'), videos_path, class: 'nav-link'

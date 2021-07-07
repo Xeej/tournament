@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   require 'will_paginate/array'
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-  before_action { @section = 'Матчи' }
+  before_action { @section = t('matches.title') }
 
   # GET /matches
   # GET /matches.json

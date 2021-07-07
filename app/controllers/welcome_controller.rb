@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  before_action { @section = 'welcome' }
+  before_action { @section = t('welcome.title') }
 
   # GET /welcome
   # GET /welcome.json
