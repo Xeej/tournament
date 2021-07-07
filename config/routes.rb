@@ -2,16 +2,16 @@ Rails.application.routes.draw do
 
   get 'welcome' => 'welcome#index'
 
-  get 'rules' => 'rules#index'
+  get 'documents' => 'documents#index'
 
-  get 'informations' => 'informations#index'
+  #get 'informations' => 'informations#index'
 
   # get 'calendar' => 'calendar#index'
   # get 'calendar_for_iframe' => 'calendar#show'
 
   # get 'rankings' => 'rankings#index'
 
-  get 'statistics' => 'statistics#index'
+  #get 'statistics' => 'statistics#index'
 
   # get 'videos' => 'videos#index'
 

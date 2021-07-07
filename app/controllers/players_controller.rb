@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :encode_photo, only: [:update, :create]
-  before_action { @section = 'Игроки' }
+  before_action { @section = t('players.title') }
 
   # GET /players
   # GET /players.json

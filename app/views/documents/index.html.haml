@@ -1,0 +1,33 @@
+.row
+  .col
+    %h1.page__title= t('documents.title')
+- tournament_name = ENV['TOURNAMENT_NAME'].downcase.gsub(' ','_')
+%ul#documents-tabs.nav.nav-pills.nav-fill{role: 'tablist'}
+  %li.nav-item
+    %a#condition-tab.nav-link.active{'data-toggle'=>'tab', href: '#condition', role: 'tab', 'aria-controls'=>'all'}
+      = t("documents.#{tournament_name}")
+  %li.nav-item
+    %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#crt', role: 'tab', 'aria-contrmatchesols'=>'all'}
+      = t('documents.crt')
+
+.tab-content#documents-tabs-content
+  .tab-pane.fade.show.active#condition{role: 'tabpanel', 'aria-labelledby'=>'condition-tab'}
+    .row
+      .col
+        %ul
+          =image_tag "/documents/#{tournament_name}/#{tournament_name}-1.jpg", class: 'document_image'
+          =image_tag "/documents/#{tournament_name}/#{tournament_name}-2.jpg", class: 'document_image'
+          =image_tag "/documents/#{tournament_name}/#{tournament_name}-3.jpg", class: 'document_image'
+    .row
+      .col
+        %a{href: "/documents/#{tournament_name}/#{tournament_name}.pdf", download: "/documents/#{tournament_name}/#{tournament_name}.pdf",}= "#{t('documents.download')} #{t("documents.#{tournament_name}")}".capitalize
+
+  .tab-pane.fade.show#crt{role: 'tabpanel', 'aria-labelledby'=>'crt-tab'}
+    .row
+      .col
+        %ul
+          =image_tag "/documents/crt/crt-1.jpg", class: 'document_image'
+          =image_tag "/documents/crt/crt-2.jpg", class: 'document_image'
+    .row
+      .col
+        %a{href: "/documents/crt/crt.pdf", download: "/documents/crt/crt.pdf",}= "#{t('documents.download')} #{t("documents.crt")}".capitalize
