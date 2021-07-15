@@ -1,8 +1,8 @@
 %h1.page__title
   = "#{t('welcome.title_in')} #{ENV['TOURNAMENT_NAME']}"
+%br
 %p
   .row{style: 'text-align: center;'}
-
-%p
-  = t('welcome.body3',
-    log_in_link: link_to(t('welcome.log_in'), new_user_session_path, style: 'font-weight: 600;')).html_safe
+    %p
+      = "#{t('welcome.body1')} #{ENV['TOURNAMENT_NAME']}. #{t('welcome.body2')}"
+%br

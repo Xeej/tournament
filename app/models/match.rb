@@ -19,6 +19,26 @@ class Match < ApplicationRecord
   before_create :winner_create
   before_destroy :destroy_players_score
 
+  def self.search(search)
+    if search
+      unaccentSearch = ApplicationController.helpers.unaccent(ActiveRecord::Base.sanitize_sql_like(search))
+      joins('join players on matches.player_id_1 = players.id or matches.player_id_2 = players.id')
+      .where("surname ~* '.*" + unaccentSearch + ".*'" + "OR" + "name ~* '.*" + unaccentSearch + ".*'")
+    else
+      :all
+    end
+  end
+
+  def self.iLikeSearch(search)
+    if search
+      sanitizedSearch = ActiveRecord::Base.sanitize_sql_like(search)
+      joins('join players on matches.player_id_1 = players.id or matches.player_id_2 = players.id').
+      where("name ILIKE ? or surname ILIKE ?", "%#{sanitizedSearch}%", "%#{sanitizedSearch}%")
+    else
+      :all
+    end
+  end
+
   def destroy_players_score
     return if winner_id.nil?
 

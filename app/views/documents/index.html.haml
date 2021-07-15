@@ -18,9 +18,9 @@
           =image_tag "/documents/#{tournament_name}/#{tournament_name}-1.jpg", class: 'document_image'
           =image_tag "/documents/#{tournament_name}/#{tournament_name}-2.jpg", class: 'document_image'
           =image_tag "/documents/#{tournament_name}/#{tournament_name}-3.jpg", class: 'document_image'
-    .row
-      .col
-        %a{href: "/documents/#{tournament_name}/#{tournament_name}.pdf", download: "/documents/#{tournament_name}/#{tournament_name}.pdf",}= "#{t('documents.download')} #{t("documents.#{tournament_name}")}".capitalize
+    -# .row
+    -#   .col
+    -#     %a{href: "/documents/#{tournament_name}/#{tournament_name}.pdf", download: "/documents/#{tournament_name}/#{tournament_name}.pdf",}= "#{t('documents.download')} #{t("documents.#{tournament_name}")}".capitalize
 
   .tab-pane.fade.show#crt{role: 'tabpanel', 'aria-labelledby'=>'crt-tab'}
     .row
@@ -28,6 +28,6 @@
         %ul
           =image_tag "/documents/crt/crt-1.jpg", class: 'document_image'
           =image_tag "/documents/crt/crt-2.jpg", class: 'document_image'
-    .row
-      .col
-        %a{href: "/documents/crt/crt.pdf", download: "/documents/crt/crt.pdf",}= "#{t('documents.download')} #{t("documents.crt")}".capitalize
+    -# .row
+    -#   .col
+    -#     %a{href: "/documents/crt/crt.pdf", download: "/documents/crt/crt.pdf",}= "#{t('documents.download')} #{t("documents.crt")}".capitalize

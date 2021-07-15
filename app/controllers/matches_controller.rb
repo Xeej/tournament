@@ -8,6 +8,7 @@ class MatchesController < ApplicationController
   # GET /matches.json
   def index
     # if params[:filter].present? && params['filter-data'].present?
+    #   byebug
     #   if params[:filter] == 'canton'
     #     @matches = Player.where(canton: params['filter-data'])
     #   elsif params[:filter] == 'character'
@@ -18,19 +19,19 @@ class MatchesController < ApplicationController
     # end
 
     # handle search parameter
-    # if params[:search].present?
-    #   begin
-    #     @matches = @matches.search(params[:search])
-    #     if @matches.empty?
-    #       flash.now[:alert] = t('flash.alert.search_matches')
-    #     end
-    #   rescue ActiveRecord::StatementInvalid
-    #     @matches = Player.all.iLikeSearch(params[:search])
-    #     if @matches.empty?
-    #       flash.now[:alert] = t('flash.alert.search_matches')
-    #     end
-    #   end
-    # end
+    if params[:search].present?
+      begin
+        @matches = @matches.search(params[:search])
+        if @matches.empty?
+          flash.now[:alert] = t('flash.alert.search_matches')
+        end
+      rescue ActiveRecord::StatementInvalid
+        @matches = Match.all.iLikeSearch(params[:search])
+        if @matches.empty?
+          flash.now[:alert] = t('flash.alert.search_matches')
+        end
+      end
+    end
     # handle sort parameter
     # sort = params[:sort]
     # if sort.present?

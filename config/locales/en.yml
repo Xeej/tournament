@@ -112,6 +112,7 @@ en:
       creating_player: "Creating player failed! You may have selected an already taken gamer tag. Please try again"
       updating_user: "User couldn't be updated"
       search_players: "There were no players found with this search query"
+      search_matches: 'There were no matches found with this search query'
       search_tournaments: "There were no tournaments found with this search query"
       updating_registration: "Registration couldn't be updated"
       delete_tournament: "Tournament couldn't be deleted!"
@@ -166,12 +167,16 @@ en:
     players:
       title: "Top Players"
       player: "Player"
+    news:
+      title: 'News'
+      body1: "Men's tennis association"
+      body2: "Women's tennis association"
 
   welcome:
     title: "Welcome"
     title_in: "Welcome in"
-    body1: "If you want to stay up-to-date with the Swiss Smash Community, join us on %{discord_link} and follow the Swiss Smash %{twitter_link} Account."
-    body2: "You can find the upcoming events in the %{tournaments_link} or in the %{calendar_link}."
+    body1: "Welcome to the official tournament page"
+    body2: "Here you can find the current information on the tournament."
     tournament_list: "Tournaments list"
     calendar: "Calendar"
     body3: "%{log_in_link}"

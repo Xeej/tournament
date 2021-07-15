@@ -115,7 +115,7 @@ ru:
     alert:
       creating_player: "Creating player failed! You may have selected an already taken gamer tag. Please try again"
       updating_user: "User couldn't be updated"
-      search_players: "There were no players found with this search query"
+      search_players: "Игроков по данному запросу не найдено"
       search_tournaments: "There were no tournaments found with this search query"
       updating_registration: "Registration couldn't be updated"
       delete_tournament: "Tournament couldn't be deleted!"
@@ -144,6 +144,7 @@ ru:
       tournament_not_finished: "Tournament was not fineshed yet. You have to finish it first on: %{link}"
       tournament_cannot_finish: "Tournament cannot be finished"
       unauthorized: "Нет прав администратора"
+      search_matches: 'Матчей по данному запросу не найдено'
 
   navigation:
     list: "List"
@@ -170,15 +171,19 @@ ru:
     players:
       title: "Топ игроки"
       player: "Игрок"
+    news: 
+      title: 'Новости'
+      body1: 'Мужская теннисная ассоциация'
+      body2: 'Женская теннисная ассоциация'
 
   welcome:
     title: "Добро пожаловать"
     title_in: "Добро пожаловать в"
-    body1: "If you want to stay up-to-date with the Swiss Smash Community, join us on %{discord_link} and follow the Swiss Smash %{twitter_link} Account."
-    body2: "You can find the upcoming events in the %{tournaments_link} or in the %{calendar_link}."
+    body1: "Добро пожаловать на официальную страницу турнира"
+    body2: "Здесь вы можете ознакомиться с текущей  информацией по турниру"
     tournament_list: "Tournaments list"
     calendar: "Calendar"
-    body3: "Добро пожаловать в проффесиональну лигу тениса, для администратора %{log_in_link}"
+    body3: "Добро пожаловать в проффесиональну лигу тениса"
     log_in: "Log in"
     sign_up: "Sign up"
 
@@ -328,7 +333,7 @@ ru:
       resend_unlock_inst: "Resend unlock instructions"
 
   news:
-    title: "News"
+    title: "Новости"
     post_title: "Title"
     teaser: "Teaser"
     text: "Text"
