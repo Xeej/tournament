@@ -128,6 +128,8 @@ class PlayersController < ApplicationController
 
     def encode_photo
       photo = player_params['photo']&.read
+      return @photo = nil unless @player
+
       @photo = photo.nil? ? @player.photo : Base64&.encode64(photo)&.gsub("\n",'')
     end
     # Use callbacks to share common setup or constraints between actions.
