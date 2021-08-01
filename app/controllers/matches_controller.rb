@@ -26,7 +26,8 @@ class MatchesController < ApplicationController
           flash.now[:alert] = t('flash.alert.search_matches')
         end
       rescue ActiveRecord::StatementInvalid
-        @matches = Match.all.iLikeSearch(params[:search])
+        # Двойной joins не работает TODO
+        @matches = Match.where(id: Match.all.iLikeSearch(params[:search]).pluck(:id))
         if @matches.empty?
           flash.now[:alert] = t('flash.alert.search_matches')
         end
