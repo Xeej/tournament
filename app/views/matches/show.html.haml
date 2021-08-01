@@ -109,7 +109,7 @@
               .player__stats__single{class: @match.player2_set_1.nil? ? 'player__stats__single--last' : ''}
                 .set
                   %span
-                    = t('matches.set_1')
+                    -# = t('matches.set_1')
                   %strong
                     = @match.player2_set_1 || ''
           -if @match.player2_set_2.present?  
@@ -117,7 +117,7 @@
               .player__stats__single{class: @match.player2_set_2.nil? ? 'player__stats__single--last' : ''}
                 .set
                   %span
-                    = t('matches.set_2')
+                    -# = t('matches.set_2')
                   %strong
                     = @match.player2_set_2 || ''
           -if @match.player2_set_3.present?        
@@ -125,7 +125,7 @@
               .player__stats__single{class: @match.player2_set_3.nil? ? 'player__stats__single--last' : ''}
                 .set
                   %span
-                    = t('matcheses.set_3')
+                    -# = t('matcheses.set_3')
                   %strong
                     = @match.player2_set_3 || ''
           -# .col

@@ -16,25 +16,32 @@
         .field.form-group
           = f.label :name, t('matches.player1')
           = f.select :player_id_1, options_for_select(players_for_select, @match.player_id_1), {include_blank: false}, class: 'form-control'
+      .col  
         .field.form-group
           = f.label :name, t('matches.set_1')
           = f.number_field :player1_set_1, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
         .field.form-group
           = f.label :name, t('matches.set_2')
           = f.number_field :player1_set_2, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
         .field.form-group
           = f.label :name, t('matches.set_3')
           = f.number_field :player1_set_3, min:0, max:7, include_blank: true, class: 'form-control'
+    .row
       .col
         .field.form-group
           = f.label :name, t('matches.player2')
           = f.select :player_id_2, options_for_select(players_for_select, @match.player_id_2), {include_blank: false}, class: 'form-control'
+      .col
         .field.form-group
           = f.label :name, t('matches.set_1')
           = f.number_field :player2_set_1, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
         .field.form-group
           = f.label :name, t('matches.set_2')
           = f.number_field :player2_set_2, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
         .field.form-group
           = f.label :name, t('matches.set_3')
           = f.number_field :player2_set_3, min:0, max:7, include_blank: true, class: 'form-control'

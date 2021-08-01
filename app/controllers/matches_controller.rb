@@ -33,29 +33,26 @@ class MatchesController < ApplicationController
       end
     end
     # handle sort parameter
-    # sort = params[:sort]
-    # if sort.present?
-    #   case sort
-    #   when 'win_loss_ratio'
-    #     if params[:order] == "desc"
-    #       @matches = @matches.sort_by do |p|
-    #         [p.win_loss_ratio, -p.created_at.to_i]
-    #       end.paginate(page: params[:page], per_page: Player::MAX_PLAYERS_PER_PAGE)
-    #     else
-    #       @matches = @matches.sort_by do |p|
-    #         [p.win_loss_ratio, -p.created_at.to_i]
-    #       end.reverse.paginate(page: params[:page], per_page: Player::MAX_PLAYERS_PER_PAGE)
-    #     end
-    #   else
-    #     @matches = @matches.order("matches.?".gsub('?', params[:sort])).paginate(page: params[:page], per_page: Player::MAX_PLAYERS_PER_PAGE)
-    #   end
-    # else
-    #   @matches = @matches.order(created_at: :desc).paginate(page: params[:page], per_page: Player::MAX_PLAYERS_PER_PAGE)
-    # end
+    sort = params[:sort]
+    if sort.present?
+      case sort
+      when 'player1'
+        @matches = @matches.joins('join players on matches.player_id_1 = players.id').order("players.surname")
+      when 'player2'
+        @matches = @matches.joins('join players on matches.player_id_2 = players.id').order("players.surname")
+      when 'winner'
+        @matches = @matches.joins('join players on matches.winner_id=players.id').order("players.surname").order("players.surname")
+      else
+        @matches = @matches.order("matches.?".gsub('?', params[:sort]))
+      end
+    else
+      @matches = @matches.order(created_at: :desc)
+    end
+    @matches = @matches.paginate(page: params[:page], per_page: Player::MAX_PLAYERS_PER_PAGE)
     # handle the order parameter
-    # if params[:order] == "desc" and !@matches.is_a?(Array)
-    #   @matches = @matches.reverse_order
-    # end
+    if params[:order] == "desc" and !@matches.is_a?(Array)
+      @matches = @matches.reverse_order
+    end
   end
 
   # GET /matches/1
