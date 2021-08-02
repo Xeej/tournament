@@ -2,7 +2,10 @@
   = "#{t('welcome.title_in')} #{ENV['TOURNAMENT_NAME']}"
 %br
 %p
-  .row{style: 'text-align: center;'}
+  .row{style: 'text-align: center; padding-bottom: 15px;'}
     %p
       = "#{t('welcome.body1')} #{ENV['TOURNAMENT_NAME']}. #{t('welcome.body2')}"
+  - tournament_name = ENV['TOURNAMENT_NAME'].downcase.gsub(' ','_')
+  .row 
+    = video_tag("/videos/#{tournament_name}.avi",controls: true, controlslist: 'nodownload', autoplay: :autoplay, loop: :loop, muted: :muted, preload: 'true', style: 'width: 70vw; min-width: 330px; height: auto;'  )
 %br
