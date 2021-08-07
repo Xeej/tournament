@@ -14,19 +14,17 @@
 
       - truncate_count = 5
       - if matches.total_pages > truncate_count * 2
-        -# right truncate
+        -# truncate
         - if matches.current_page < truncate_count
           - (1..truncate_count + 1).each do |page|
             %li{class: "#{"active" if page == matches.current_page}"}= link_to page.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: page), value: page
           %li= '...'
           %li{class: "#{"active" if matches.total_pages == matches.current_page}"}= link_to matches.total_pages.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page:  matches.total_pages), value:  matches.total_pages
-        -# left truncate
         - elsif matches.current_page >  matches.total_pages - truncate_count
           %li{class: "#{"active" if 1 == matches.current_page}"}= link_to 1.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: 1), value: 1
           %li= '...'
           - (matches.total_pages-truncate_count..matches.total_pages).each do |page|
             %li{class: "#{"active" if page == matches.current_page}"}= link_to page.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: page), value: page
-        -# middle truncate
         - else
           %li{class: "#{"active" if 1 == matches.current_page}"}= link_to 1.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: 1), value: 1
           %li= '...'
