@@ -7,5 +7,6 @@
       = "#{t('welcome.body1')} #{ENV['TOURNAMENT_NAME']}. #{t('welcome.body2')}"
   - tournament_name = ENV['TOURNAMENT_NAME'].downcase.gsub(' ','_')
   .row 
-    = video_tag("/videos/#{tournament_name}.avi",controls: true, controlslist: 'nodownload', autoplay: :autoplay, loop: :loop, muted: :muted, preload: 'true', style: 'width: 70vw; min-width: 330px; height: auto;'  )
+    - availible_urls = %w[avi mp4].map { |prefix| "/videos/#{tournament_name}." + prefix }
+    = video_tag(availible_urls, controls: true, controlslist: 'nodownload', autoplay: :autoplay, loop: :loop, muted: :muted, preload: 'true', style: 'width: 70vw; min-width: 330px; height: auto;'  )
 %br
