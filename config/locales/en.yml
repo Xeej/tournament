@@ -368,6 +368,9 @@ en:
 
   players:
     title: "Players"
+    payment: 'Payment'
+    two_set_amount: 'Game cost for 2 sets'
+    three_set_amount: 'Game cost for 3 sets'
     prohibited: "prohibited this player from being saved:"
     gamer_tag: "Gamer tag"
     prefix: "Sponsor prefix"

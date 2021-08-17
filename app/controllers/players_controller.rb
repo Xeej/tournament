@@ -72,7 +72,17 @@ class PlayersController < ApplicationController
   def edit
   end
 
+  # GET /players/1/payment
+  def payment
+    @player = Player.find(params[:id])
 
+    return if params.dig(:date, :month).blank?
+
+    # TODO вынести в сервис
+    @payment = true
+    @weeks = []
+
+  end
 
   # # POST /players
   # # POST /players.json

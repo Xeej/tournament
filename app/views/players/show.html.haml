@@ -34,9 +34,13 @@
           .admin-actions__link
             = link_to edit_player_path(@player), class:'btn btn-ghost btn-square' do
               %span.material-icons.admin-actions__link__icon= 'edit'
-          .admin-list-actions__link
+          .admin-actions__link
             = link_to @match, method: :delete, data: { confirm: t('players.delete') }, class: 'btn btn-sstm btn-square' do
               %span.material-icons.admin-actions__link__icon= 'delete'
+        - if current_user.is_accountant
+          .admin-actions__link
+            = link_to payment_player_path(@player), method: :get, class: 'btn btn-sstm btn-square' do
+              %span.material-icons.admin-actions__link__icon= 'payment'
 
   -# - if @player.tournaments.any? or youtube_video_ids.any?
   -#   %ul#player-tabs.nav.nav-pills.nav-fill{role: 'tablist'}
@@ -152,6 +156,21 @@
                   = "#{@player.win_loss_ratio} %"
               %span
                 = t('players.win_loss')
+      - if current_user.present? && current_user.is_accountant
+        .player__stats
+          .row
+            .col
+              .player__stats__single.player__stats__single--last
+                %strong
+                  = @player.two_set_amount || 'Не указано, стоит указать, отредактировав игрока'
+                %span
+                  = t('players.two_set_amount')
+            .col
+              .player__stats__single.player__stats__single--last
+                %strong
+                  = @player.three_set_amount || 'Не указано, стоит указать, отредактировав игрока'
+                %span
+                  = t('players.three_set_amount')
           -# .col
           -#   .player__stats__single.player__stats__single--last
           -#     %strong

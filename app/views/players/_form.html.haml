@@ -59,6 +59,13 @@
   .field.form-group
     = f.label :photo, t('players.photo')
     = f.file_field :photo, accept: 'image/png,image/jpeg'
+  - if current_user.present? && current_user.is_accountant
+    .field.form-group
+      = f.label :two_set_amount, t('players.two_set_amount')
+      = f.number_field :two_set_amount, class: 'form-control'
+    .field.form-group
+      = f.label :three_set_amount, t('players.three_set_amount')
+      = f.number_field :three_set_amount, class: 'form-control'
   -# .field.form-group
   -#   = f.label :birth_year, t('players.birth_year')
   -#   = f.select :birth_year, options_for_select(birth_years, @player.birth_year), {include_blank: true}, class: 'form-control'

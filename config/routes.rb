@@ -32,7 +32,11 @@ Rails.application.routes.draw do
   # patch 'tournaments/seed_players/:id' => 'tournaments#seed_players'
 
   get 'players/unregistered' => 'players#unregistered'
-  resources :players
+  resources :players do
+    member do
+      get 'payment', action: :payment
+    end
+  end
   resources :matches
 
   # resources :registrations, only: [:update]

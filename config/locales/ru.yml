@@ -249,22 +249,22 @@ ru:
     allDayText: "all-day"
     buttonText:
       today: "Today"
-      month: "Month"
+      month: "Месяц"
       agendaWeek: 'Week'
       agendaDay: 'Day'
     monthNames:
-      - "January"
-      - "February"
-      - "March"
-      - "April"
-      - "May"
-      - "June"
-      - "July"
-      - "August"
-      - "September"
-      - "October"
-      - "November"
-      - "December"
+      - "Январь"
+      - "Февраль"
+      - "Март"
+      - "Апрель"
+      - "Май"
+      - "Июнь"
+      - "Июль"
+      - "Август"
+      - "Сентябрь"
+      - "Октябрь"
+      - "Ноябрь"
+      - "Декабрь"
     monthNamesShort:
       - "Jan"
       - "Feb"
@@ -372,6 +372,10 @@ ru:
 
   players:
     title: "Игроки"
+    payment: 'Выплата'
+    two_set_amount: 'Стоимость игры за 2 сета'
+    three_set_amount: 'Стоимость игры за 3 сета'
+    amount: 'Посчитать'
     prohibited: "Ошибка при сохранении игрока"
     gamer_tag: "Gamer tag"
     name: "Имя"
