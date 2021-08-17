@@ -12,7 +12,7 @@
             %span{"aria-hidden"=> "true"}
               &laquo;
 
-      - truncate_count = 5
+      - truncate_count = 4
       - if matches.total_pages > truncate_count * 2
         -# truncate
         - if matches.current_page < truncate_count
@@ -28,7 +28,7 @@
         - else
           %li{class: "#{"active" if 1 == matches.current_page}"}= link_to 1.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: 1), value: 1
           %li= link_to '...', matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: matches.current_page), value: matches.current_page
-          - pol_truncate_count = truncate_count / 2
+          - pol_truncate_count = 1
           - (matches.current_page-pol_truncate_count..matches.current_page+pol_truncate_count).each do |page|
             %li{class: "#{"active" if page == matches.current_page}"}= link_to page.to_s, matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: page), value: page
           %li= link_to '...', matches_path(search: params[:search], order: params[:order], sort: params[:sort], page: matches.current_page), value: matches.current_page

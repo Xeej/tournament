@@ -37,12 +37,11 @@
   text-decoration: none;
   background-color: white;
   border: 1px solid #DDD;
-  border-left-width: 0;
 }
 
 .pagination {
   text-align: center;
-  border-left: 1px solid #ddd;
+  justify-content: center;
   .first{
       padding : 0;
       float: none;
