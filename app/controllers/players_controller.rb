@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
   require 'will_paginate/array'
-  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :payment]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
   before_action :encode_photo, only: [:update, :create]
   before_action { @section = t('players.title') }
