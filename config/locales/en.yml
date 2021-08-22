@@ -369,6 +369,15 @@ en:
   players:
     title: "Players"
     payment: 'Payment'
+    amount: 'Price'
+    week_id: 'W'
+    count_set_2: '2-sets games'
+    count_set_3: '3-sets games'
+    price_set_2: 'Amount 2-sets games'
+    price_set_3: 'Amount 3-sets games'
+    price_sets: 'Amount all games'
+    price: 'Amount:'
+    week_days: 'D'
     two_set_amount: 'Game cost for 2 sets'
     three_set_amount: 'Game cost for 3 sets'
     prohibited: "prohibited this player from being saved:"

@@ -1,1 +1,32 @@
-= 'Соси писю пиши ТЗ'
+.tab-content
+  .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
+    %table.table.table-hover.table-borderless
+      %thead.table-header
+        %tr
+          %th= t("players.week_id")
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.week_days")
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.count_set_2")
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.count_set_3")
+          %th.text-center= t("players.price_set_2")
+          %th.text-center= t("players.price_set_3")
+          %th.text-center= t("players.price_sets")
+      %tbody.table-content.with-show.week-list-body
+        %td.text-center
+          - @weeks.each do |week| 
+            %tr{'data-id': week[:id], 'data-component'=>'week'}
+              %td= week[:week_id]
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:week_days]
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:count_set_2]
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:count_set_3]
+              %td.text-center= week[:price_set_2]
+              %td.text-center= week[:price_set_3]
+              %td.text-center= week[:price_sets]
+-if @all_amount
+  .player__stats 
+    .row
+      .col
+        %strong
+          = t('players.price')
+        %span
+          = @all_amount
+          

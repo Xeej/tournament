@@ -373,6 +373,14 @@ ru:
   players:
     title: "Игроки"
     payment: 'Выплата'
+    week_id: 'Н'
+    count_set_2: 'Двух-сетовых игры'
+    count_set_3: 'Трех-сетовых игры'
+    price_set_2: 'Итог двух-сетовых игры'
+    price_set_3: 'Итог трех-сетовых игры'
+    price_sets: 'Итог по всем играм'
+    price: 'Подитог:'
+    week_days: 'Ч'
     two_set_amount: 'Стоимость игры за 2 сета'
     three_set_amount: 'Стоимость игры за 3 сета'
     amount: 'Посчитать'
