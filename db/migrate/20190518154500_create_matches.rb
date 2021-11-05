@@ -8,8 +8,6 @@ class CreateMatches < ActiveRecord::Migration[5.2]
       t.bigint :player2_id
       t.integer :player1_score
       t.integer :player2_score
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

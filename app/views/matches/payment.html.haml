@@ -4,7 +4,7 @@
 
 .row
   .col
-    = form_for :date, url: payment_player_path(@player), method: :get, role: 'form', class:'form' do |f|
+    = form_for :date, url: payment_matches_path, method: :get, role: 'form', class:'form' do |f|
       .field.form-group
         = f.label :month, t('calendar.buttonText.month')
         - select_array = t('calendar.monthNames').each_with_object({}).with_index { |(elem, hash), index| hash[elem] = index + 1 }
@@ -13,7 +13,7 @@
         = f.submit class:'btn btn-ghost', value: t('players.amount')
 
 -if @payment
-  = render 'show_payment', player_payment: @player_payment
+  = render 'show_payment', month_payment: @month_payment
 -else
   .row
     %p Выберете месяц

@@ -10,10 +10,16 @@
         = search_field_tag :search, params[:search], class: 'form-control', placeholder: t('players.search')
         = button_tag type: 'submit', class: 'btn btn-ghost', name: nil do
           %span.material-icons= 'search'
--if current_user.present? && current_user.super_admin?
-  .row
-    = link_to new_match_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
-      %span.material-icons.admin-actions__link__icon= 'add'
+- if current_user.present?
+  .admin-actions
+    -if current_user.super_admin? || current_user.is_admin?
+      .admin-actions__link
+        = link_to new_match_path, action: :create, class: 'btn btn-sstm btn-square', style: 'margin-right: auto;' do
+          %span.material-icons.admin-actions__link__icon= 'add'
+    - if current_user.is_accountant
+      .admin-actions__link
+        = link_to payment_matches_path, method: :get, class: 'btn btn-sstm btn-square' do
+          %span.material-icons.admin-actions__link__icon= 'payment'
 -# связать таблицы бд, чтобы не было n + 1
 - players = Player.where(id: @matches.flat_map {|match| [match.player_id_1, match.player_id_2]}.uniq).pluck(:id, :surname, :name, :photo).each_with_object({}) {|player, hash| hash[player[0]] = {surname: player[1], name: player[2], photo: player[3]}}
 .tab-content#matches-tabs-content
