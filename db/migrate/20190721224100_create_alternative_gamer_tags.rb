@@ -4,8 +4,6 @@ class CreateAlternativeGamerTags < ActiveRecord::Migration[5.2]
       t.belongs_to :player, index: true
 
       t.string :gamer_tag
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

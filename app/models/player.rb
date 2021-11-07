@@ -19,6 +19,10 @@ class Player < ApplicationRecord
   MAX_PLAYERS_PER_PAGE = 10
   MAX_PLAYER_VIDEOS_PER_PAGE = 5
 
+  def full_name
+    [surname, name, patronymic].reject(&:blank?).map(&:strip).join(' ')
+  end
+
   def destroy_matches
     matches.destroy_all
   end

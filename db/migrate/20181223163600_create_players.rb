@@ -7,8 +7,6 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.integer :self_assessment
       t.integer :tournament_experience
       t.text :comment
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

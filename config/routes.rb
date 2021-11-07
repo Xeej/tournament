@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       get 'payment', action: :payment
     end
   end
-  resources :matches
+  resources :matches do
+    collection do
+      get 'payment'
+    end
+  end
 
   # resources :registrations, only: [:update]
 

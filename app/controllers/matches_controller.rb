@@ -114,6 +114,19 @@ class MatchesController < ApplicationController
     end
   end
 
+  def payment
+    return if params.dig(:date, :month).blank?
+
+    @payment = true
+    players = Player.all.map do |player|
+      PlayerPayment.new(player, params['date']['month'].to_i).call.merge(full_name: player.full_name)
+    end
+    @month_payment = {
+      all_amount: players.sum{ |player| player[:all_amount] },
+      players: players
+    }
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match

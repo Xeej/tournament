@@ -369,6 +369,7 @@ en:
   players:
     title: "Players"
     payment: 'Payment'
+    fio: 'FNLNP'
     amount: 'Price'
     week_id: 'W'
     count_set_2: '2-sets games'

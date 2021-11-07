@@ -9,8 +9,6 @@ class CreateTournaments < ActiveRecord::Migration[5.2]
       t.integer :occupied_seats
       t.integer :total_seats
       t.boolean :active
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

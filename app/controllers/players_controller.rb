@@ -78,37 +78,8 @@ class PlayersController < ApplicationController
 
     return if params.dig(:date, :month).blank?
 
-    # TODO вынести в сервис
     @payment = true
-    days_weeks = []
-    month = params['date']['month'].to_i
-    week_id = 1
-    day = Time.new(Time.now.year, month, 1)
-    while day.month == month do
-      if day.sunday.month == month
-        days_weeks << (day..day.sunday)
-      else
-        days_weeks << (day..day.end_of_month)
-      end
-      day = (day.sunday + 1.day).monday
-    end
-    @all_amount = 0
-    @weeks = days_weeks.map.with_index do |days, index|
-      count_set_2 = @player.matches.where(start_time: days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil).where(player2_set_3: nil, player1_set_3: nil).count
-      count_set_3 = @player.matches.where(start_time: days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
-      price_set_2 = @player.two_set_amount * count_set_2 rescue @player.two_set_amount.nil? ? 'Сумма за 2 сета не указана' : 'Данных игр не сыграно'
-      price_set_3 = @player.three_set_amount * count_set_3 rescue @player.three_set_amount.nil? ? 'Сумма за 3 сета не указана' : 'Данных игр не сыграно'
-      @all_amount += price_set_2.to_i + price_set_3.to_i
-      {
-        week_id: index + 1,
-        week_days: "#{days.first.day}..#{days.last.day}",
-        count_set_2: count_set_2,
-        count_set_3: count_set_3,
-        price_set_2: price_set_2,
-        price_set_3: price_set_3,
-        price_sets: price_set_2.to_i + price_set_3.to_i
-      }
-    end
+    @player_payment = PlayerPayment.new(@player, params['date']['month'].to_i).call
   end
 
   # # POST /players

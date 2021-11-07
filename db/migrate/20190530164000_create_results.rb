@@ -10,8 +10,6 @@ class CreateResults < ActiveRecord::Migration[5.2]
       t.string :city
       t.integer :wins
       t.integer :losses
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end
