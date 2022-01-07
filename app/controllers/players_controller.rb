@@ -79,7 +79,7 @@ class PlayersController < ApplicationController
     return if params.dig(:date, :month).blank?
 
     @payment = true
-    @player_payment = PlayerPayment.new(@player, params['date']['month'].to_i).call
+    @player_payment = PlayerPayment.new(@player, params['date']['month'].to_i, params['date']['year']).call
   end
 
   # # POST /players

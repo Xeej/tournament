@@ -119,7 +119,7 @@ class MatchesController < ApplicationController
 
     @payment = true
     players = Player.all.map do |player|
-      PlayerPayment.new(player, params['date']['month'].to_i).call.merge(full_name: player.full_name)
+      PlayerPayment.new(player, params['date']['month'].to_i, params['date']['year'].to_i).call.merge(full_name: player.full_name)
     end
     @month_payment = {
       all_amount: players.sum{ |player| player[:all_amount] },

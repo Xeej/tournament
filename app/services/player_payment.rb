@@ -1,9 +1,10 @@
 class PlayerPayment
-  attr_reader :days_weeks, :month, :player
+  attr_reader :days_weeks, :month, :player, :year
 
-  def initialize(player, month)
+  def initialize(player, month, year)
     @player = player
     @month = month
+    @year = year
     @days_weeks = []
   end
 
@@ -37,7 +38,7 @@ class PlayerPayment
   private
 
   def define_days_weeks
-    day = Time.new(Time.now.year, month, 1)
+    day = Time.new(year, month, 1)
     while day.month == month do
       if day.sunday.month == month
         days_weeks << (day..day.sunday)
