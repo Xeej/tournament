@@ -252,6 +252,7 @@ ru:
       month: "Месяц"
       agendaWeek: 'Week'
       agendaDay: 'Day'
+      year: 'Год'
     monthNames:
       - "Январь"
       - "Февраль"

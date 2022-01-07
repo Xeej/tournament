@@ -248,6 +248,7 @@ en:
       month: "Month"
       agendaWeek: 'Week'
       agendaDay: 'Day'
+      year: 'Year'
     monthNames:
       - "January"
       - "February"
