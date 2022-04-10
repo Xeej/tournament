@@ -91,6 +91,14 @@
                     = t('matches.set_3')
                   %strong
                     = @match.player1_set_3 || ''
+          - if @match.efficiency_player_1.present?
+            .col
+              .player__stats__single{class: @match.efficiency_player_1.nil? ? 'player__stats__single--last' : ''}
+                .set
+                  %span
+                    = t('matches.efficiency')
+                  %strong
+                    = @match.efficiency_player_1 || ''
 
       .player__stats 
         .row    
@@ -128,12 +136,14 @@
                     -# = t('matcheses.set_3')
                   %strong
                     = @match.player2_set_3 || ''
-          -# .col
-          -#   .player__stats__single{class: (@player.patronymic.nil?) ? 'player__stats__single--last' : ''}
-          -#     %strong
-          -#       = @player.patronymic
-          -#     %span
-          -#       = t('players.patronymic')
+          - if @match.efficiency_player_2.present?
+            .col
+              .player__stats__single{class: @match.efficiency_player_2.nil? ? 'player__stats__single--last' : ''}
+                .set
+                  %span
+                    = t('matches.efficiency')
+                  %strong
+                    = @match.efficiency_player_2 || ''
 
       - if @match.winner_id.present?
         .player__stats
@@ -159,6 +169,12 @@
                 = @match.start_time.strftime(t('matches.format_time'))
               %span
                 = t('matches.start_time')
+          .col
+            .player__stats__single{class: @match.start_time.nil? ? 'player__stats__single--last' : ''}
+              %strong
+                = @match.duration.to_s + ' мин'
+              %span
+                = t('matches.duration')
             -# .col
             -#   .player__stats__single
             -#     %strong

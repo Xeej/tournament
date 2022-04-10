@@ -22,7 +22,9 @@ class PlayerPayment
         count_set_3: count_set_3,
         price_set_2: price_set_2,
         price_set_3: price_set_3,
-        price_sets: price_set_2.to_i + price_set_3.to_i
+        price_sets: price_set_2.to_i + price_set_3.to_i,
+        average_time: average_time(days),
+        efficiency: efficiency(days)
       }
     end
     {
@@ -31,6 +33,8 @@ class PlayerPayment
       all_count_set_3: weeks.sum {|week| week[:count_set_3] },
       all_price_set_2: weeks.first[:price_set_2].is_a?(Integer) ? weeks.sum {|week| week[:price_set_2]} : 'Сумма за 2 сета не указана',
       all_price_set_3: weeks.first[:price_set_3].is_a?(Integer) ? weeks.sum {|week| week[:price_set_3]} : 'Сумма за 3 сета не указана',
+      all_average_time: average_time,
+      all_efficiency: efficiency,
       weeks: weeks
     }
   end
@@ -49,12 +53,34 @@ class PlayerPayment
     end
   end
 
+  def matches(days = nil)
+    player.matches.where({ start_time: days }.compact)
+  end
+
   def count_set_2(days)
-    player.matches.where(start_time: days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil)
+    matches(days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil)
                   .where(player2_set_3: nil, player1_set_3: nil).count
   end
 
   def count_set_3 (days)
-    player.matches.where(start_time: days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
+    matches.where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
+  end
+
+  def average_time(days = nil)
+    matches_scope = matches(days)
+    return 0 if matches_scope.blank?
+
+    matches_scope.pluck(:duration).sum / matches_scope.count
+  end
+
+  def efficiency(days = nil)
+    matches_scope = matches(days)
+    return 0 if matches_scope.blank?
+
+    # Сумма где он игрок 1
+    sum_efficiency_player_1 = matches_scope.where(player_id_1: player.id).pluck(:efficiency_player_1).sum
+    # Сумма где он игрок 2
+    sum_efficiency_player_2 = matches_scope.where(player_id_2: player.id).pluck(:efficiency_player_2).sum
+    sum_efficiency_player_1 + sum_efficiency_player_2
   end
 end

@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-#User.create!(full_name: 'admin', username: 'admin@example.com', password: 'admin@example.com', email: 'admin@mail.ru', created_at: Time.now, is_admin: true, is_super_admin: true) unless User.exists?(username: 'admin@example.com', email: 'admin@example.com',  is_admin: true, is_super_admin: true)
+#User.create!(full_name: 'admin', username: 'admin@example.com', password: 'admin@example.com', email: 'admin@mail.ru', created_at: Time.now, is_admin: true, is_super_admin: true) unless User.exists?(username: 'admin@example.com', email: 'admin@example.com',  is_admin: true, is_super_admin: true, is_accountant: true)
 
 players = [
   {name: 'Никита', surname: 'Меденко', gender: 'male'},
