@@ -8,9 +8,14 @@
           %li= message
   - if current_user.super_admin? || current_user.is_admin?
     .row
-      .field.form-group
-        = f.label :name, t('matches.start_time')
-        = f.datetime_select :start_time, :start_year => Date.current.year, include_blank: false, default: {"start_time(3i)"=>Time.current.day.to_s, "start_time(2i)"=>Time.current.month.to_s, "start_time(1i)"=>Time.current.year.to_s, "start_time(4i)"=>"12", "start_time(5i)"=>"00"}
+      .col
+        .field.form-group
+          = f.label :name, t('matches.start_time')
+          = f.datetime_select :start_time, :start_year => Date.current.year, include_blank: false, default: {"start_time(3i)"=>Time.current.day.to_s, "start_time(2i)"=>Time.current.month.to_s, "start_time(1i)"=>Time.current.year.to_s, "start_time(4i)"=>"12", "start_time(5i)"=>"00"}
+      .col
+        .field.form-group
+          = f.label :name, t('matches.duration')
+          = f.number_field :duration, min:0, include_blank: false, class: 'form-control'
     .row
       .col
         .field.form-group
@@ -28,6 +33,10 @@
         .field.form-group
           = f.label :name, t('matches.set_3')
           = f.number_field :player1_set_3, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
+        .field.form-group
+          = f.label :name, t('matches.efficiency')
+          = f.number_field :efficiency_player_1, include_blank: false, class: 'form-control'
     .row
       .col
         .field.form-group
@@ -45,6 +54,10 @@
         .field.form-group
           = f.label :name, t('matches.set_3')
           = f.number_field :player2_set_3, min:0, max:7, include_blank: true, class: 'form-control'
+      .col
+        .field.form-group
+          = f.label :name, t('matches.efficiency')
+          = f.number_field :efficiency_player_2, include_blank: false, class: 'form-control'
 
   .actions.form-group
     = f.submit class:'btn btn-ghost', value: t('matches.save')

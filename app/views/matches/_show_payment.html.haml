@@ -9,6 +9,8 @@
           %th.text-center= t("players.price_set_2")
           %th.text-center= t("players.price_set_3")
           %th.text-center= t("players.price_sets")
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.average_time")
+          %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.efficiency")
       %tbody.table-content.with-show.player-list-body
         %td.text-center
           - @month_payment[:players].each do |player| 
@@ -19,6 +21,8 @@
               %td.text-center= player[:all_price_set_2]
               %td.text-center= player[:all_price_set_3]
               %td.text-center= player[:all_amount]
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= player[:all_average_time]
+              %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= player[:all_efficiency]
 .player__stats 
   .row
     .col

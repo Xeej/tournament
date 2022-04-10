@@ -9,7 +9,7 @@ class Match < ApplicationRecord
   validates :player1_set_3, presence: true, if: ->{ player2_set_3.present? }
   validates :player2_set_3, presence: true, if: ->{ player1_set_3.present? }
 
-  validates :start_time, presence: true
+  validates :start_time, :duration, :efficiency_player_1, :efficiency_player_1, presence: true
   before_validation :default_start_time, on: [:create, :update]
 
   validate :check_player1, on: [:create, :update]

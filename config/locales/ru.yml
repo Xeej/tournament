@@ -392,6 +392,8 @@ ru:
     surname: "Фамилия"
     patronymic: "Отчество"
     all_games: "Всего игр"
+    average_time: Среднее время
+    efficiency: Эффекти-вность
     prefix: "Sponsor prefix"
     discord_username: "Discord username"
     twitter_username: "Twitter username"
@@ -459,6 +461,10 @@ ru:
     save: 'Сохранить матч'
     create: 'Создание матча'
     no_matches_found: 'Матчей нет'
+    price: 'Итог'
+    efficiency: Эффективность %
+    average_time: 'Среднее время'
+    duration: Длительность матча
     format_time: '%d/%m/%Y %H:%M'
 
   statistics:
