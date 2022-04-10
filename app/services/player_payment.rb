@@ -63,7 +63,7 @@ class PlayerPayment
   end
 
   def count_set_3 (days)
-    matches.where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
+    matches(days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
   end
 
   def average_time(days = nil)
