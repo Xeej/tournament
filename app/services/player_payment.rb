@@ -4,7 +4,7 @@ class PlayerPayment
   def initialize(player, month, year)
     @player = player
     @month = month
-    @year = year
+    @year = Integer(year)
     @days_weeks = []
   end
 
@@ -33,8 +33,8 @@ class PlayerPayment
       all_count_set_3: weeks.sum {|week| week[:count_set_3] },
       all_price_set_2: weeks.first[:price_set_2].is_a?(Integer) ? weeks.sum {|week| week[:price_set_2]} : 'Сумма за 2 сета не указана',
       all_price_set_3: weeks.first[:price_set_3].is_a?(Integer) ? weeks.sum {|week| week[:price_set_3]} : 'Сумма за 3 сета не указана',
-      all_average_time: average_time,
-      all_efficiency: efficiency,
+      all_average_time: average_time(Date.new(year, month, 1).to_time..Date.new(year, month, -1).to_time + 23.hour + 59.minutes),
+      all_efficiency: efficiency(Date.new(year, month, 1).to_time..Date.new(year, month, -1).to_time + 23.hour + 59.minutes),
       weeks: weeks
     }
   end
@@ -66,14 +66,14 @@ class PlayerPayment
     matches(days).where.not(player2_set_2: nil, player1_set_2: nil, player2_set_1: nil, player1_set_1: nil, player2_set_3: nil, player1_set_3: nil).count
   end
 
-  def average_time(days = nil)
+  def average_time(days)
     matches_scope = matches(days)
     return 0 if matches_scope.blank?
 
     matches_scope.pluck(:duration).sum / matches_scope.count
   end
 
-  def efficiency(days = nil)
+  def efficiency(days)
     matches_scope = matches(days)
     return 0 if matches_scope.blank?
 
