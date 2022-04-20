@@ -38,20 +38,4 @@ Prod commands:
 - heroku run rake utils:remove_player_from_finished_tournament[<t_id>,<p_id>] --remote prod
 
 General links:
-- https://ssb-tournament-manager.herokuapp.com
-- https://ssb-club-bern.ch
-- https://swisssmash.ch
-- https://challonge.com
-- http://sac-bern.ch
-- https://braacket.com/league/ALLOFTHEM/tournament?rows=200
-
-Tournaments crawler links:
-- https://smash.gg/tournaments?per_page=100&filter={%22upcoming%22%3Atrue%2C%22videogameIds%22%3A0%2C%22countryCode%22%3A%22CH%22}
-- https://braacket.com/tournament/search?rows=100&country=ch&game=ssbu&status=1
-- https://www.toornament.com/tournaments/?q[discipline]=supersmashbros_ultimate&q[platform]=nintendo_switch&q[type]=upcoming
-
-Icons:
-- https://www.ssbwiki.com/Category:Head_icons_(SSBU)
-
-Google Analytics:
-- https://analytics.google.com/analytics/web/#/report-home/a145089919w206718824p199562205
+- http://www.vs-open.com
