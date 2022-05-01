@@ -9,6 +9,12 @@
   %li.nav-item
     %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#crt', role: 'tab', 'aria-contrmatchesols'=>'all'}
       = t('documents.crt')
+  %li.nav-item
+    %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#decree', role: 'tab', 'aria-contrmatchesols'=>'all'}
+      = t('documents.decree')
+  %li.nav-item
+    %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#command', role: 'tab', 'aria-contrmatchesols'=>'all'}
+      = t('documents.command')
 
 .tab-content#documents-tabs-content
   .tab-pane.fade.show.active#condition{role: 'tabpanel', 'aria-labelledby'=>'condition-tab'}
@@ -25,8 +31,22 @@
     .row
       .col
         %ul
-          =image_tag "/documents/crt/crt-1.jpg", class: 'document_image'
-          =image_tag "/documents/crt/crt-2.jpg", class: 'document_image'
+          - Dir.glob(Rails.root.join('public', 'documents', 'crt', '*.jpg')).map { |path| File.basename(path) }.sort.each do |doc_name|   
+            =image_tag "/documents/crt/#{doc_name}", class: 'document_image'
     -# .row
     -#   .col
     -#     %a{href: "/documents/crt/crt.pdf", download: "/documents/crt/crt.pdf",}= "#{t('documents.download')} #{t("documents.crt")}".capitalize
+
+  .tab-pane.fade.show#decree{role: 'tabpanel', 'aria-labelledby'=>'decree-tab'}
+    .row
+      .col
+        %ul
+          - Dir.glob(Rails.root.join('public', 'documents', 'decree', '*.jpg')).map { |path| File.basename(path) }.sort.each do |doc_name|   
+            =image_tag "/documents/decree/#{doc_name}", class: 'document_image'
+
+  .tab-pane.fade.show#command{role: 'tabpanel', 'aria-labelledby'=>'command-tab'}
+    .row
+      .col
+        %ul
+          - Dir.glob(Rails.root.join('public', 'documents', 'command', '*.jpg')).map { |path| File.basename(path) }.sort.each do |doc_name|   
+            =image_tag "/documents/command/#{doc_name}", class: 'document_image'

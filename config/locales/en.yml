@@ -428,6 +428,9 @@ en:
     save: 'Save player'
     photo: 'Photo player'
 
+  result:
+    title: Results
+
   documents:
     title: 'Documents'
     vs_open: 'Contition VS Open'
