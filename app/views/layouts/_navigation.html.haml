@@ -44,6 +44,8 @@
 
       %li.nav-item{role: "presentation", class: (@section == 'rules' ? 'active' : 'inactive')}
         = link_to t('documents.title'), documents_path, class: 'nav-link'
+      %li.nav-item{role: "presentation", class: (@section == 'rules' ? 'active' : 'inactive')}
+        = link_to t('result.title'), 'https://www.dropbox.com/sh/787tdumibz35mmp/AACqD-7WwcId1b3OUXYwUoGXa?dl=0', class: 'nav-link'
 
       -# %li.nav-item{role: "presentation", class: (@section == 'informations' ? 'active' : 'inactive')}
       -#   = link_to t('information.title_short'), informations_path, class: 'nav-link'

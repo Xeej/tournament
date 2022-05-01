@@ -175,6 +175,7 @@ ru:
       title: 'Новости'
       body1: 'Мужская теннисная ассоциация'
       body2: 'Женская теннисная ассоциация'
+      body3: Правила вида спорта «Теннис»
 
   welcome:
     title: "Добро пожаловать"
@@ -438,11 +439,16 @@ ru:
     save: 'Сохранить игрока'
     photo: 'Фото игрока'
 
+  result:
+    title: Результаты
+
   documents:
     title: 'Документы'
     vs_open: 'Положение VS Open'
     touch_tennis: 'Положение Winners cup. Touchtennis challenge'
     crt: 'Свидетельство регистрации организации'
+    decree: Устав
+    command: Приказ
     download: 'Скачать документ'
     
   
