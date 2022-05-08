@@ -15,6 +15,9 @@
   %li.nav-item
     %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#command', role: 'tab', 'aria-contrmatchesols'=>'all'}
       = t('documents.command')
+  %li.nav-item
+    %a#crt-tab.nav-link{'data-toggle'=>'tab', href: '#statement', role: 'tab', 'aria-contrmatchesols'=>'all'}
+      = t('documents.statement')
 
 .tab-content#documents-tabs-content
   .tab-pane.fade.show.active#condition{role: 'tabpanel', 'aria-labelledby'=>'condition-tab'}
@@ -50,3 +53,10 @@
         %ul
           - Dir.glob(Rails.root.join('public', 'documents', 'command', '*.jpg')).map { |path| File.basename(path) }.sort.each do |doc_name|   
             =image_tag "/documents/command/#{doc_name}", class: 'document_image'
+
+  .tab-pane.fade.show#statement{role: 'tabpanel', 'aria-labelledby'=>'statement-tab'}
+    .row
+      .col
+        %ul
+          - Dir.glob(Rails.root.join('public', 'documents', 'statement', '*.jpg')).map { |path| File.basename(path) }.sort.each do |doc_name|   
+            =image_tag "/documents/statement/#{doc_name}", class: 'document_image'
