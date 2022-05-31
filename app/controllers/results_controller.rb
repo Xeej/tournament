@@ -32,7 +32,7 @@ class ResultsController < ApplicationController
         @players = @players.order('players.%{sort}' % { sort: sort })
       end
     else
-      @players = @players.order(created_at: :desc)
+      @players = @players.sort_by(&:position)
     end
 
     # handle the order parameter
