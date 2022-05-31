@@ -373,6 +373,7 @@ ru:
     created_at: "Created at:"
 
   players:
+    position: Место
     title: "Игроки"
     fio: 'ФИО'
     payment: 'Выплата'
@@ -441,6 +442,9 @@ ru:
 
   result:
     title: Результаты
+
+  protocol:
+    title: Отчеты
 
   documents:
     title: 'Документы'

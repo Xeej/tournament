@@ -49,6 +49,7 @@ Rails.application.routes.draw do
                                    sessions: 'users/sessions',
                                    passwords: 'users/passwords' }, except: [:sign_up]
   resources :users, only: [:index, :update, :destroy]
+  resources :results, only: [:index]
 
   root to: "welcome#index"
 

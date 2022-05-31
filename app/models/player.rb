@@ -23,6 +23,10 @@ class Player < ApplicationRecord
     [surname, name, patronymic].reject(&:blank?).map(&:strip).join(' ')
   end
 
+  def position
+    Player.order(wins: :desc).index(self) + 1
+  end
+
   def destroy_matches
     matches.destroy_all
   end

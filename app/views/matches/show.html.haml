@@ -91,7 +91,7 @@
                     = t('matches.set_3')
                   %strong
                     = @match.player1_set_3 || ''
-          - if @match.efficiency_player_1.present?
+          - if @match.efficiency_player_1.present? && (current_user&.super_admin? || current_user&.is_admin?)
             .col
               .player__stats__single{class: @match.efficiency_player_1.nil? ? 'player__stats__single--last' : ''}
                 .set
@@ -136,7 +136,7 @@
                     -# = t('matcheses.set_3')
                   %strong
                     = @match.player2_set_3 || ''
-          - if @match.efficiency_player_2.present?
+          - if @match.efficiency_player_2.present? && (current_user&.super_admin? || current_user&.is_admin?)
             .col
               .player__stats__single{class: @match.efficiency_player_2.nil? ? 'player__stats__single--last' : ''}
                 .set

@@ -23,6 +23,9 @@ en:
   back: "Back"
   confirm: "Are you sure?"
 
+  result:
+    title: Protocol
+
   defines:
     self_assessments:
       beginner: "Beginner"
@@ -430,6 +433,8 @@ en:
 
   result:
     title: Results
+  protocol:
+    title: Protocol
 
   documents:
     title: 'Documents'
