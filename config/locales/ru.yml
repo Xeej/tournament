@@ -456,7 +456,9 @@ ru:
     statement: Выписка 
     download: 'Скачать документ'
     
-  
+  results:
+    title: Результаты
+
   matches:
     title: "Матчи"
     player1: "Первый игрок"

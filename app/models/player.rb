@@ -23,8 +23,11 @@ class Player < ApplicationRecord
     [surname, name, patronymic].reject(&:blank?).map(&:strip).join(' ')
   end
 
-  def position
-    Player.order(wins: :desc).index(self) + 1
+  # Сортируем по индексу всех игроков, а выводим в зависимости от выбора фильтра это gender для view results
+  def position(gender = nil)
+    return Player.order(wins: :desc).index(self) + 1 if gender.nil?
+
+    Player.where(gender: gender).order(wins: :desc).index(self) + 1
   end
 
   def destroy_matches

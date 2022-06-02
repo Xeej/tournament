@@ -5,8 +5,13 @@ class ResultsController < ApplicationController
 
   # GET /players
   # GET /players.json
+
   def index
-      @players = Player.all
+    @players = if params[:filter].present? && params[:filter_data].present?
+      Player.where(params[:filter] => params[:filter_data])
+    else
+      Player.all
+    end
 
     # handle search parameter
     if params[:search].present?
