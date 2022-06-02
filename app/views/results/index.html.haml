@@ -20,7 +20,7 @@
   .col
     = link_to 'Мужской рязряд', results_path(search: params[:search], filter: 'gender', filter_data: 'male'), class: 'btn btn-ghost', style: "background: #{params[:filter_data] == 'male' ? '#E5E9EB' : 'null'}"
   .col
-    = link_to 'Женский рязряд', results_path(search: params[:search], filter: 'gender', filter_data: 'famale'), class: 'btn btn-ghost', style: "background: #{params[:filter_data] == 'famale' ? '#E5E9EB' : 'null'}"
+    = link_to 'Женский рязряд', results_path(search: params[:search], filter: 'gender', filter_data: 'female'), class: 'btn btn-ghost', style: "background: #{params[:filter_data] == 'female' ? '#E5E9EB' : 'null'}"
   .col
     = link_to 'Смешанный рязряд', results_path(search: params[:search]), class: 'btn btn-ghost', style: "background: #{params[:filter_data].nil? ? '#E5E9EB' : 'null'}"
 

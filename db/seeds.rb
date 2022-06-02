@@ -26,7 +26,7 @@ players = [
   {surname: 'Кремнев', name: 'Алексей', gender: 'male'},
   {surname: 'Кремнев', name: 'Александр', gender: 'male'},
   {surname: 'Шуба', name: 'Михаил', gender: 'male'},
-  {surname: 'Смирнова', name: 'Анна', gender: 'famale'},
+  {surname: 'Смирнова', name: 'Анна', gender: 'female'},
   {surname: 'Мельникова', name: 'Анна', gender: 'female'},
   {surname: 'Якутин', name: 'Евгений', gender: 'male'},
   {surname: 'Хисамова', name: '????', gender: 'female'},
