@@ -22,7 +22,7 @@
   .col
     = link_to 'Женский рязряд', results_path(search: params[:search], filter: 'gender', filter_data: 'female'), class: 'btn btn-ghost', style: "background: #{params[:filter_data] == 'female' ? '#E5E9EB' : 'null'}"
   .col
-    = link_to 'Смешанный рязряд', results_path(search: params[:search]), class: 'btn btn-ghost', style: "background: #{params[:filter_data].nil? ? '#E5E9EB' : 'null'}"
+    = link_to 'Выстовачные матчи', results_path(search: params[:search]), class: 'btn btn-ghost', style: "background: #{params[:filter_data].nil? ? '#E5E9EB' : 'null'}"
 
 .tab-content
   .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
