@@ -1,0 +1,65 @@
+-# .tab-content
+-#   .tab-pane.fade.show.active{role: 'tabpanel', 'aria-labelledby'=>'stats-tab'}
+-#     %table.table.table-hover.table-borderless
+-#       %thead.table-header
+-#         %tr
+-#           %th= t("players.week_id")
+-#           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.week_days")
+-#           %th.text-center.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-table-cell= t("players.count_set_2")
+-#           %th.text-center.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-table-cell= t("players.count_set_3")
+-#           %th.text-center= t("players.price_set_2")
+-#           %th.text-center= t("players.price_set_3")
+-#           %th.text-center= t("players.price_sets")
+-#           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.average_time")
+-#           %th.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= t("players.efficiency")
+-#       %tbody.table-content.with-show.week-list-body
+-#         %td.text-center
+-#           - @player_payment[:weeks].each do |week| 
+-#             %tr{'data-id': week[:id], 'data-component'=>'week'}
+-#               %td= week[:week_id]
+-#               %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:week_days]
+-#               %td.text-center.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-table-cell= week[:count_set_2]
+-#               %td.text-center.d-none.d-sm-none.d-md-none.d-lg-none.d-xl-table-cell= week[:count_set_3]
+-#               %td.text-center= week[:price_set_2]
+-#               %td.text-center= week[:price_set_3]
+-#               %td.text-center= week[:price_sets]
+-#               %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:average_time]
+-#               %td.text-center.d-none.d-sm-table-cell.d-md-table-cell.d-lg-none.d-xl-table-cell= week[:efficiency]
+.player__stats 
+  .row
+    .col
+      %strong
+        = 'Количество матчей'
+      %span
+        = player_statistic[:count_match]
+  .row
+    .col
+      %strong
+        = 'Количество выгйранных матчей'
+      %span
+        = player_statistic[:count_winner_match]
+  .row
+    .colr
+      %strong
+        = 'Количество геймов'
+      %span
+        = player_statistic[:count_game]
+  .row
+    .colr
+      %strong
+        = 'Количество выигранных геймов'
+      %span
+        = player_statistic[:count_winner_game]
+  .row
+    .colr
+      %strong
+        = 'Количество сетов'
+      %span
+        = player_statistic[:count_set]
+  .row
+    .colr
+      %strong
+        = 'Количество выйгранных сетов'
+      %span
+        = player_statistic[:count_winner_set]
+          

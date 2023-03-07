@@ -41,6 +41,9 @@
           .admin-actions__link
             = link_to payment_player_path(@player), method: :get, class: 'btn btn-sstm btn-square' do
               %span.material-icons.admin-actions__link__icon= 'payment'
+          .admin-actions__link
+            = link_to statistic_player_path(@player), method: :get, class: 'btn btn-sstm btn-square' do
+              %span.material-icons.admin-actions__link__icon= 'people'
 
   -# - if @player.tournaments.any? or youtube_video_ids.any?
   -#   %ul#player-tabs.nav.nav-pills.nav-fill{role: 'tablist'}

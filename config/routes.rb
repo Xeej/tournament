@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :players do
     member do
       get 'payment', action: :payment
+      get 'statistic', action: :statistic
     end
   end
   resources :matches do

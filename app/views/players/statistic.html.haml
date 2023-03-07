@@ -1,0 +1,21 @@
+.row
+  .col
+    %h1.page__title= t('players.statistic')
+
+.row
+  .col
+    = form_for :date, url: statistic_player_path(@player), method: :get, role: 'form', class:'form' do |f|
+      .field.form-group
+        = f.label :month, t('calendar.buttonText.month')
+        - select_array = t('calendar.monthNames').each_with_object({}).with_index { |(elem, hash), index| hash[elem] = index + 1 }
+        = f.select :month, options_for_select(select_array, params.dig('date','month') || Time.now.month), class: 'form-control'
+        = f.label :year, t('calendar.buttonText.year')
+        = f.select :year, options_for_select((2021..Time.now.year), params.dig('date','year') || Time.now.year), class: 'form-control'
+      .actions.form-group
+        = f.submit class:'btn btn-ghost', value: t('players.amount')
+
+-if @statistic
+  = render 'show_statistic', player_statistic: @player_statistic
+-else
+  .row
+    %p Выберете месяц

@@ -82,6 +82,16 @@ class PlayersController < ApplicationController
     @player_payment = PlayerPayment.new(@player, params['date']['month'].to_i, params['date']['year']).call
   end
 
+   # GET /players/1/statistic
+   def statistic
+    @player = Player.find(params[:id])
+
+    return if params.dig(:date, :month).blank?
+
+    @statistic = true
+    @player_statistic = PlayerStatistic.new(@player, params['date']['month'].to_i, params['date']['year']).call
+  end
+
   # # POST /players
   # # POST /players.json
   def create
